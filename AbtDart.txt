@@ -1,0 +1,119 @@
+Steps 
+Install Flutter SDK 
+Run Flutter Doctor Command
+Install Dart and flutter Plugins in IDE
+If use VS Code use Android Studio to setup AVD. And Run an AVD device 
+Start Without Debug in VSCode to begin.
+-------------------------------------------------
+
+Start of App: 
+
+main(){
+debugPaintSizeEnabled = true; -- widget border
+debugPaintSizeBaselinesEnabled = true; -- not much usefull 
+debugPaintPointersEnabled = true; -- not much useful 
+runApp(1stWidget())
+}
+
+Notes:
+@Override annotation not req
+Whenever any image or static data is added, need to mention in pubspec.yaml file under assests section as in commented text format.
+setState((){}) callback is executed for statefull widget state changes 
+initState() - runs before build method when state first creates.
+for statefull widget data can be pased using widget property
+StateLess --> constructor(), build()
+StateFull --> constructor(), initState(), build(), setState(), didUpdateWidget()-->build(), 
+positional argument and name argument 
+Container() - if nothing wants to print on screen return empty container instead of null.
+
+Numbers: num  => Split into int  (e.g. 42 ) and double (e.g. 2.5 )
+Text: String  => e.g. 'Hello!' 
+Booleans: bool => true  or false 
+Lists: Multiple, ordered elements => e.g. [1, 2, 3] 
+Maps: Multiple, named and unordered elements => e.g. {'name': 'Max', 'age': 29} 
+
+void initState() {
+    super.initState();
+    _products.add(widget.startingProduct);  
+  }
+
+StateFull --> State clas has the inner changing variable, the connected statefull class is immutable class so the varibale declared are final.
+		To access the properties of the connected statefull class use widget keyword in initState method of state class. with this we can pass data from other class to this statefull class constructor and it comes to state.
+
+BuildContext
+
+'\$${products[index]['price'].toString()}'  ----> baclslash is escape sequence in dart. 
+
+
+
+
+List Of Widgets
+----------------------
+StatelessWidget(@O Build())
+MaterialApp( home: Scafold(), bode: Widget(),theme: ThemeData(), debugShowMaterialGrid : true, routes:{}, routes: {}, 
+onGenerateRoute: (RouteSettings){ return MaterialPageRoute()}, onUnknownRoute(RouteSettings){   return MaterialPageRoute(0} )
+ThemeData(primarySwatch : Colors.,accentColor: Colors., brightness : Brightness. , child: widget)
+Scafold(appBar: AppBar(),body: widget(), drawer: Drawer())
+AppBar(title: Text(), bottom: TabBar())
+Text('', style : TextStyle(fontSize: double, fontWeight : FontWeight.bold, fontFamily : 'Oswald' ))
+Card(child: Widget)
+Column(crossAxisAlignment: CrossAxisAlignment.center, children: Widget[])
+Image()
+Image.asset(path given in assests of yaml file to display the image)
+Container(margin: EdgeInsects(), child: widget(),height:double number, padding : EdgeInsects.only(top : 10), 
+decoration: BoxDecoration() )
+
+RaisedButton(child: Widget(), onPressed: (){},color: Colors., textColor: Colors.) #color: Theme.of(context).primaryColor or accentColor
+ListView( children: widget) -- we cant use beneath other widget
+Expanded(child: widget) - takes remaining space
+ListView.builder(itemBuilder: widget, itemCount: length,) 
+ButtonBar(alignment: MainAxisAlignment.center, children: widget[])
+FlatButton(child: , onPressed: (){})
+Navigator.push(context, MaterialPageRoute(builder: (context){widget}) ) -- 
+	Also can pass value in argument of widget.
+	
+Navigator.pop(context, [true]) - placed on a onPressed in button
+	an Future is returned from pop method. Where we can pass data from pop to push. 
+
+Navigator.pushReplacement(context,MaterialPageRoute(builder: (BuildContext context) => ProductsPage()),);
+Navigator.pushReplacementNamed(context, '/admin');	
+onGenerateRoute: (RouteSettings settings) {return MaterialPageRoute()}
+onUnknownRoute: (RouteSettings settings) {return MaterialPageRoute()}
+Drawer(child: widget())
+	automaticallyImplyLeading :false --> not inherit from parent
+ListTile(title: Text(), onTap:(){})
+WillPopScope( onWillPop: 
+	(){should return a future with value true/false. With this future value we can go back without pop method. should not use them both}) --> 
+DefaultTabController(length: 2, child: widget(), ) 
+TabBar(tabs: <widget>[Tab()])
+Tab(icon: Icons(), text : string)
+TabBarView(children: <>[])
+TextField(decoration : InputDecoration(), onChanged : (){}, maxLines: 4,keyboardType: TextInputType.number,obscureText: true,)
+InputDecoration(labelText: string)
+SwitchListTile(value: bool, onChanged :(){}, title: Text())
+SizedBox(height: decimal, width : decimal)
+AlertDialog(title: Text('') ,content: Text(), actions: <widget>[btn1, btn2])
+Row( mainAxisAlignment: MainAxisAlignment.center, children : <widget>[], )
+BoxDecoration(color: , borderRadius : )
+
+
+classes: 
+----------------
+List p = [], p.map((elements){})--# called iterable, p.add() --#to add things in the list, use .toList to convert it as list,   
+Colors()
+EdgeInsects(),
+EdgeInsects.all()
+EdgeInsets.symmetric(horizontal: 6.0, vertical: 2.5)
+EdgeInsets.only()
+Brightness()
+Brightness.
+Icons.create, .list --> icons class. 
+double.parse(value)
+FontWeight.bold
+CrossAxisAlignment.center
+BorderRadius.circular(5.0)
+
+
+Functions:
+-------------------------
+showDialog(context: , builder: (){ return AlertDialog()}, )
