@@ -1,0 +1,92 @@
+1. Library fields
+    Objs: User1(Admin), User2(User), Book
+    Book 
+      books name
+      book id
+      book author
+    User(User1 and User2)
+      uid
+      name
+      isAdmin
+      rights
+      Map<Id(book), count>
+      
+      
+2. Parking lot
+    objs: User1(Admin), Vehicle, fare
+      User
+        uid
+        name
+        isAdmin
+       Veicle
+        vid
+        vehicle number
+        in time
+        out time
+        date
+        visited count
+       Fare
+        fid
+        vid
+        fare
+        
+Composition
+
+final class Car {
+
+  private final Engine engine;
+
+  Car(EngineSpecs specs) {
+    engine = new Engine(specs);
+  }
+
+  void move() {
+    engine.work();
+  }
+}
+
+
+Aggregation
+
+final class Car {
+
+  private Engine engine;
+
+  void setEngine(Engine engine) {
+    this.engine = engine;
+  }
+
+  void move() {
+    if (engine != null)
+      engine.work();
+  }
+}
+
+Dependency occurs when one object "is dependent" on another. It can occur with or without a relation between the 2 objects. Actually, one object might not even be knowing that another exists, yet they might be dependent. Example : The Producer-Consumer problem. The producer need not know that the consumer exists, yet it has to do wait() and notify(). So, "NO" , dependency is not a subset of association.
+
+Composition : Is a type of association in which the "child" object cannot exist without the parent class. i.e, if the child object exists, then it MUST BE IN THE parent Object and nowhere else.
+EG: A Car(Parent) has Fuel injection system(child). Now, it makes no sense to have a Fuel Injection system outside a car (it will be of no use). i.e, Fuel injection system cannot exist without the car.
+
+Aggregation : Here, the child object can exist outside the parent object. A Car has a Driver. The Driver CAN Exist outside the car.
+
+Create Relationships among Tables ::
+
+One To Many : One teacher goes to many class. So in a teacher table one row and class table many row. 
+Many To Many : Orders and products are mapped in orderDetails table. One orderid has many row and one product id comes in many row.
+One To One : Its to create optional column in other/sub/optional table to increase performance and security. for each productid there 
+            is one row in both table and may be 0 row in other table.
+
+concatenated index : Indexing on set of columns 
+partial Index : part of column, first 10 character of column
+
+https://www.ntu.edu.sg/home/ehchua/programming/sql/Relational_Database_Design.html
+Entity Integrity Rule
+Referential Integrity Rule: 
+Business logic Integrity:
+
+Normalization
+1NF: should not keep list of coulumns. eg item1, item2, ...
+2NF: The non key columns should depend on the total primary keys of the table not part of primary key of table.
+3NF: In a table non key column should be independent and only dependent on primary key columns. 
+Higher Normal Form : ---
+

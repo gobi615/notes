@@ -1,0 +1,97 @@
+Notes
+http://geeks.redmart.com/2015/01/07/skiing-in-singapore-a-coding-diversion/
+To move an object either use physics(prefered) or transaform.
+
+RgidBody - 
+  isKinametic - is having rigidbody but using transaform to move obj bcos physics wont work in the object when isKinametic is selected.
+  apply force through addForce/addTorque to transform the obj through phy. 
+  Physics also modifies the transform/rotate property. 
+  should apply colliders to work on the force.
+  Drag -> 0.001 means solid block of metal
+  Drag -> 10 means feather
+  If moving transform of a obj and want collision/trigger event attach a rigidbody to it. 
+  Ang.Dray -> infinity doesnot mean it wont rotate
+  
+
+Colliders
+  Primitive colliders less cpu intense
+  Mesh - Mesh collider wont work.
+  Mesh - Mesh(Convex enabled) collider will work.
+  use primitive colider for moving obj, mesh collider for stationery obj
+  compound collider - Collection of primitive/covex mesh collider added to an game object as child objet.
+  Continuous Collision Detection
+  In Compound Colliders, there should be one rigidbody to the root game object
+  primitive collider wont work correctly with shear transforms
+  Static Collider -> motionless objs, dont have rigidbody and wont move on collision
+  Dynamic Colliders -> have rigibody, move on collisioin
+  if a isTrigger enabled then it doesnt behave as a solid object, will allow other collider to pass through. 
+  when collisions occur and initiate actions using the OnCollisionEnter function
+  When a collider enters its space, a trigger will call the OnTriggerEnter function
+  OnCollisionEnter - When touching first
+  OnCollisionStay - During touching
+  OnCollisionExit - when releasing the touch
+  OnTriggerEnter, OnTriggerStay and OnTriggerExit 
+  for non trigger collision -> one of the obj should be non kinametic rigidBody, other wise OnCollisionEnter wont called.
+  with triger collisioin this restriction doesnt apply
+  Static Collider, The Rigidbody Collider and the Kinematic Rigidbody Collider.
+  If a obj need to trigger collision event and not want physics to move it then kinametic RigidBdy Colider needed   
+  
+ Difference BTW OnCollision and OnTrigger  
+    The scripting system can detect when collisions occur and initiate actions using the OnCollisionEnter function. 
+    However, you can also use the physics engine simply to detect when one collider enters the space of another without 
+    creating a collision. A collider configured as a Trigger (using the Is Trigger property) does not behave as a solid 
+    object and will simply allow other colliders to pass through. When a collider enters its space, a trigger will call the 
+    OnTriggerEnter function on the trigger object’s scripts. 
+  
+  
+ Physics Material
+   When colliders interact, their surfaces need to simulate the properties of the material they are supposed to represent.
+   The Physic Material is used to adjust friction and bouncing effects of colliding objects.
+   
+ Scripts   
+  Awake - Called for every obj when scene loads.
+  Start - Called before Update method. Eg. Initilization 
+  Update - calls for every frame. Eg. User Input, 
+  FixedUpdate - caled on fixed interval time. Eg. Physics Obj
+  LateUpdate - Called after Update method. Eg. for Camera to follow
+  Every components is a class
+  Controlling GameObjects
+    - To take reference of a componet within same GameObject (-- Rigidbody rb = GetComponent<Rigidbody>(); ) with that you can change 
+      variable value or call method of that component. 
+    - NullReference error thrown if the component is not available.
+    - To link component of other GameObject, create a public variable in script with the component type and drag and assign 
+      the other GameObject in inspector. 
+    - Or can create a GameObject type and assign a GO. Ref the component with the GO in script.
+    - To Find GameObject at RunTime
+        - To get Similar GO Use the foreach method to get all child GO in an array. (transform.childCount, Transform[] ...)
+        - To get specific child GO use the -- transform.Find("Gun");
+        - To get GO using name -- GameObject.Find("MainHeroCharacter");
+        - To get Go using tag -- GameObject.FindWithTag("Player"); , GameObject.FindGameObjectsWithTag("Enemy");
+        - To instantiate a GO use the Instantiate(GameObject, transform.poisition, transform.rotation) method.
+        - 
+    - Events
+        - Regular Update Events (Update, FixedUpdate, LastUpdate)
+        - OnGUI() -- GUI event. 
+        - OnCollisionEnter(), onTriggerEnter() -- phy event
+    - Time/Frame 
+        - Time.fixedDeltaTime --> To get/update FixedUpdate time event. 
+        - 
+    - Keyframe Animation
+        - Record an action and create an animation from it. eg. change color
+        - it usefull if the movement is constant and not require change in the game. 
+    - Sprite Animation
+        - split the sprite in sprite editor.
+        - create a gameObj and add sprite renderer, animation component.
+        - select all images and create the animation. 
+        - Drag a GameObj on to it.
+        - Create a animation controller and drag the animation to animation controller.
+        - add animation controller to the animation component.
+    - Animation Controller
+        - created from animation. Has all different state of the object which is animated in the scene. eg. a man in the scene.
+        - need to add transition between state. eg. idle-->walk/idle--->run/idle -->jump and same for walk and jump
+    - Keyframe Event
+        - Can add an event at a particular keyframe in the animation which calls to the method inside the scrip component for that gameObj.
+        - can be usefull to add a controll in the animation. eg. changing speed, color
+    - Coroutine -> to create multiple of same gameObject
+   
+  

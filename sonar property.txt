@@ -1,0 +1,18 @@
+sonar.host.url=http://localhost:9000
+sonar.projectKey=
+sonar.projectVersion=1.0
+sonar.projectName=
+
+sonar.sources=C:/Users/1597983/Documents/Vikram_sarabai/eSpeedDev/AE_DelCh_Screen_Dev/sonar/source
+#sonar.tests = C:/Users/1597983/Documents/Vikram_sarabai/eSpeedDev/Sonar-DelChnl/test
+
+sonar.language=java
+
+sonar.projectBaseDir=C:/Users/1597983/Documents/Vikram_sarabai/eSpeedDev/AE_DelCh_Screen_Dev/sonar
+
+sonar.java.binaries=C:/Users/1597983/Documents/Vikram_sarabai/eSpeedDev/AE_DelCh_Screen_Dev/sonar/class
+sonar.java.libraries=C:/Users/1597983/Documents/Vikram_sarabai/eSpeedDev/AE_DelCh_Screen_Dev/sonar/lib
+
+sonar.sourceEncoding=UTF-8
+
+sonar.ws.timeout=1000

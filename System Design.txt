@@ -1,0 +1,131 @@
+A - Ask good questions
+B - Don't use buzzwords
+C - Clear and organized thinking
+D - Drive discussions with 80-20 rule
+
+Things to consider
+Features
+API
+Availability
+Latency
+Scalability
+Durability
+Class Diagram
+Security and Privacy
+Cost-effective
+
+Concepts to know
+Vertical vs horizontal scaling
+CAP theorem
+     https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/
+     https://www.quora.com/What-Is-CAP-Theorem-1
+ACID vs BASE
+Partitioning/Sharding 
+Consistent Hashing
+Optimistic vs pessimistic locking
+Strong vs eventual consistency
+RelationalDB vs NoSQL
+Types of NoSQL
+     Key value
+     Wide column
+     Document-based
+     Graph-based
+Caching
+Data center/racks/hosts
+CPU/memory/Hard drives/Network bandwidth
+Random vs sequential read/writes to disk
+HTTP vs http2 vs WebSocket
+TCP/IP model
+ipv4 vs ipv6
+TCP vs UDP
+DNS lookup
+Http & TLS
+Public key infrastructure and certificate authority(CA)
+Symmetric vs asymmetric encryption
+Load Balancer
+     Load Balancing is a key concept to system design. One of the popular ways to balance load in a system is to use the concept of 
+     consistent hashing. Consistent Hashing allows requests to be mapped into hash buckets while allowing the system to add and remove 
+     nodes flexibly so as to maintain a good load factor on each machine.
+     
+     The standard way to hash objects is to map them to a search space, and then transfer the load to the mapped computer. A system 
+     using this policy is likely to suffer when new nodes are added or removed from it. 
+     
+     Consistent Hashing maps servers to the key space and assigns requests(mapped to relevant buckets, called load) to the next clockwise
+     server. Servers can then store relevant request data in them while allowing the system flexibility and scalability.
+     
+     Some terms you would here in system design interviews are Fault Tolerance, in which case a machine crashes. And Scalability, in 
+     which case machines need to be added to process more requests. These two principles are allowed by Consistent Hashing, and hence 
+     it is an important building block to a system design architect's toolbox.
+     
+     Another term used often is request allocation. This means assigning a request to a server. Consistent hashing assigns requests to 
+     the servers in a way that the load is balanced are remains close to equal. 
+    
+     Server architecture is a subjective concept, and there are outliers for many cases. Don't think of Consistent Hashing as a silver 
+     bullet for fault tolerance and scalability, but a useful concept for request allocation.
+     
+     Use it to solve software questions in interviews and real life. Best of luck!
+CDNs & Edges
+Bloom filters and Count-Min sketch
+Paxos 
+Leader election
+Design patterns and Object-oriented design
+Virtual machines and containers
+Pub-sub architecture 
+MapReduce
+Multithreading, locks, synchronization, CAS(compare and set)
+
+Tools
+Cassandra
+MongoDB/Couchbase
+Mysql
+Memcached
+Redis
+Zookeeper
+Kafka
+NGINX
+HAProxy
+Solr, Elastic search
+Amazon S3
+Docker, Kubernetes, Mesos
+Hadoop/Spark and HDFS
+
+
+
+https://docs.datastax.com/en/archived/cassandra/2.1/cassandra/architecture/architectureIntro_c.html
+http://cloudurable.com/blog/kafka-architecture/index.html
+https://zookeeper.apache.org/doc/trunk/zookeeperOver.html
+https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf
+https://ai.google/research/pubs/pub27898
+https://en.wikipedia.org/wiki/CAP_theorem
+https://en.wikipedia.org/wiki/Consistent_hashing
+https://www.mongodb.com/mongodb-architecture
+https://en.wikipedia.org/wiki/HTTP/2
+https://en.wikipedia.org/wiki/Transport_Layer_Security
+
+
+
+
+Consistent Hashing
+
+LoadBalancing : Horizontal Scalability and reduntancy
+Hardware LoadBalancing : Citrix NetScaler
+Software LoadBalancing : HAProxy
+Application Caching : explicit integration in the application code itself(check in cache server if not ava then take it from DB)
+Database Caching : 
+     When you flip your database on, you're going to get some level of default configuration which will provide some degree of caching 
+     and performance. Those initial settings will be optimized for a generic usecase, and by tweaking them to your system's access 
+     patterns you can generally squeeze a great deal of performance improvement.
+In-memory Caching : a back-end server which Stores entire data in memory (eg: Memcached(least recently used), Redis)
+CDN : static pages prefered to look up in CDN then web server. (http headers has the prop for how long the cdn can cache it)
+lightWeight Http Server : Nginx 
+Cache invalidation : prevent inconsistent btw cache and DB. write through, write around, write back
+Off Line Processing : 
+     Message Queue : RabbitMQ
+     Scheduling periodic tasks : like cron
+     Map-reduce : used in Hadoop --> map and reduce principle
+
+
+
+     
+     
+
