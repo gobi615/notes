@@ -97,6 +97,10 @@ Row( mainAxisAlignment: MainAxisAlignment.center, children : <widget>[], )
 BoxDecoration(color: , borderRadius : )
 
 
+
+
+
+
 classes: 
 ----------------
 List p = [], p.map((elements){})--# called iterable, p.add() --#to add things in the list, use .toList to convert it as list,   
