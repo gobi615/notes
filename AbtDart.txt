@@ -43,7 +43,7 @@ StateFull --> State clas has the inner changing variable, the connected stateful
 BuildContext
 
 '\$${products[index]['price'].toString()}'  ----> baclslash is escape sequence in dart. 
-
+Listview always takes full availabel space in container. 
 
 
 
@@ -54,8 +54,9 @@ MaterialApp( home: Scafold(), bode: Widget(),theme: ThemeData(), debugShowMateri
 onGenerateRoute: (RouteSettings){ return MaterialPageRoute()}, onUnknownRoute(RouteSettings){   return MaterialPageRoute(0} )
 ThemeData(primarySwatch : Colors.,accentColor: Colors., brightness : Brightness. , child: widget)
 Scafold(appBar: AppBar(),body: widget(), drawer: Drawer())
-AppBar(title: Text(), bottom: TabBar())
+AppBar(title: Text(), bottom: TabBar(), actions: <widget>[])
 Text('', style : TextStyle(fontSize: double, fontWeight : FontWeight.bold, fontFamily : 'Oswald' ))
+MaterialPageRoute(builder: (){ return widget})
 Card(child: Widget)
 Column(crossAxisAlignment: CrossAxisAlignment.center, children: Widget[])
 Image()
@@ -64,6 +65,7 @@ Container(margin: EdgeInsects(), child: widget(),height:double number, padding :
 decoration: BoxDecoration() )
 
 RaisedButton(child: Widget(), onPressed: (){},color: Colors., textColor: Colors.) #color: Theme.of(context).primaryColor or accentColor
+IconButton(icon: Icon(Icons.), onPressed : (){}, color : , )
 ListView( children: widget) -- we cant use beneath other widget
 Expanded(child: widget) - takes remaining space
 ListView.builder(itemBuilder: widget, itemCount: length,) 
@@ -81,30 +83,47 @@ onGenerateRoute: (RouteSettings settings) {return MaterialPageRoute()}
 onUnknownRoute: (RouteSettings settings) {return MaterialPageRoute()}
 Drawer(child: widget())
 	automaticallyImplyLeading :false --> not inherit from parent
-ListTile(title: Text(), onTap:(){})
+ListTile(leading: Icon(), title: Text(), onTap:(){})
+Icon(Icons.list)
 WillPopScope( onWillPop: 
 	(){should return a future with value true/false. With this future value we can go back without pop method. should not use them both}) --> 
 DefaultTabController(length: 2, child: widget(), ) 
-TabBar(tabs: <widget>[Tab()])
+TabBar(tabs: <widget>[Tab(), ...])  -- particularly arrays of tabs widget.
 Tab(icon: Icons(), text : string)
 TabBarView(children: <>[])
 TextField(decoration : InputDecoration(), onChanged : (){}, maxLines: 4,keyboardType: TextInputType.number,obscureText: true,)
-InputDecoration(labelText: string)
+InputDecoration(labelText: string, filled: boolean, fillColor : Colors.white)
 SwitchListTile(value: bool, onChanged :(){}, title: Text())
 SizedBox(height: decimal, width : decimal)
 AlertDialog(title: Text('') ,content: Text(), actions: <widget>[btn1, btn2])
 Row( mainAxisAlignment: MainAxisAlignment.center, children : <widget>[], )
-BoxDecoration(color: , borderRadius : )
+BoxDecoration(color: , border: Border.all, borderRadius :BorderRadius.circular(5.0), image : DecorationImage() )
+DecorationImage(fit: BoxFit.cover, colorFilter : , image : AssetImage('assets/background.jpg'))
+AssetImage('assets/background.jpg')
+Center(child : , )
+SingleChildScrollView()
+GestureDetector(child: , onTap: (){])
 
-
-
-
+--*-------------*-----
+Form(key : GlobalKey<FormState>() --> objet, child : Column())  -- > key obj used to control whole form obj/data.
+TextFormField(focusNode: , decoration: , initialValue, maxLines: ,keyboardType : , validator : (){}, onSaved : (){}, obscureText : , ) --> used in forms with validation.
+Note: below two lines executed in submit method.
+_formKey.currentState.save(); --> to execute each onSaved function to save the form value.  No return type.
+_formKey.currentState.validate()  --> to execute each validate method of field and returns any string if validation fails. returns boolean.
+FocusNode() --> each form field has a FoucusNode obj. we can manually create and assign one to controll field focus based on choice. 
+EnsureVisibleWhenFocused(focusNode :FocusNode(), child : TextFormField() )
+-- to turn off field focus by licking anywhere on the form. 
+Widget pageContent = GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Container(
 
 
 classes: 
 ----------------
 List p = [], p.map((elements){})--# called iterable, p.add() --#to add things in the list, use .toList to convert it as list,   
-Colors()
+Colors.black
 EdgeInsects(),
 EdgeInsects.all()
 EdgeInsets.symmetric(horizontal: 6.0, vertical: 2.5)
@@ -116,7 +135,12 @@ double.parse(value)
 FontWeight.bold
 CrossAxisAlignment.center
 BorderRadius.circular(5.0)
-
+TextInputType.emailAddress
+Border.all
+BoxFit.cover,
+ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.dstATop)
+BlendMode.dstATop
+MediaQuery.of(context).size.width
 
 Functions:
 -------------------------
