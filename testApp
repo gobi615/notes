@@ -1,0 +1,143 @@
+
+return scaffold(
+	appBar : AppBar(title : Text('Forum'))
+	body : Auth(),
+	)
+)
+
+class MyApp extends StateFullWidget{
+	
+	createState(){
+	return _MyAppState()
+   }
+}
+
+class _MyAppState extends State<>{
+
+	Widget Build(){
+		return MaterialApp(
+			home : scafold(
+				body : MaterialRoutePage((BuildContext context){return Auth()})
+			)
+			route: {'\', MaterialRoutePage}
+			theme : ThemeData(),
+			onGeneratedRoute : <manipulating the route>
+			onUnknownRoute : <>
+		)
+	
+	}
+}
+
+
+class Auth extends statelesswidget{
+	Widget Build (){
+		return Container(
+			child : Column(
+				children : <Widget>[					
+						
+							RaisedButton(
+								child : Text('Singin with Google'),
+								textColor: Colors.orange,
+								onClicked : (){
+									// Check session
+									//call firebase to oAuth login
+									//save session for all pages. 
+									//then move to Dashboard --> Navigator.pushNamed('/dash')
+								}
+							),
+							
+							RaisedButton(
+								child : Text('Singin with Google'),
+								textColor: Colors.orange,
+								onClicked : (){
+									//pop up form
+									// call firebase for email/pass login 
+									// save session.	
+									//then move to Dashboard --> Navigator.pushNamed('/dash')
+									
+								}
+							)
+						
+						]
+			
+			)
+		)
+	
+	}
+
+}
+
+
+class DashBoard extends StateFullWidget{
+	createState(){
+		return _DashBoard();
+	}
+}
+
+class _DashBoard extends state{
+	List<CustomThreads> threads;
+	return Scafold(
+		appBar : AppBar(title : Text('Head')),
+		body: Column(
+			children : <Widget>[ --if not work use expanded.
+				new ListView.builder
+				  (
+					itemCount: litems.length,
+					itemBuilder: (BuildContext ctxt, int index) {
+					 return new Text(litems[index]);
+					}
+				  )
+			]
+		)
+	)
+}
+
+clas Login extends statelesswidget{
+	string email; 
+	string password;
+	bool remember;
+	Widget Build(BuildContext context){
+		return Scafold(
+			body : Column(
+				children : <>[
+					TextField(
+						onChanged : (String value){
+							email = value;
+						},
+						initValue : 'email',
+						KeyboardType = TextInputType.email,
+						decoration : InputDecoration(
+							labelText : 'Email',
+						),
+					
+					);
+					TextField(
+						onChanged : (String value){
+							password = value;
+						},
+						
+						obsecuretext = true,
+						decoration : InputDecoration(
+							labelText : 'password',
+						),
+					
+					);
+					SwitchListTile(
+						title : Text('Remember Device'),
+						value : false,
+						onChanged : (bool v){ remember = true;}
+					);
+					RaisedButton(
+						onPressed : (){call firebase api.},
+						child : Text('Submit'),
+						color : Colors.blue,						
+					)
+				]
+			)
+		)
+	
+	}
+
+}
+
+
