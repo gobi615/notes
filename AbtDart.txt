@@ -146,3 +146,23 @@ Functions:
 -------------------------
 showDialog(context: , builder: (){ return AlertDialog()}, )
 
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+Flutter 
+----
+
+plugins - flutterfire.
+
+From Dart, you get the reference to Cloud Firestore by calling Firestore.instance
+Firestore.instance.collection('baby').snapshots() to return a stream of snapshots.
+
+Adding a new DocumentReference:
+Firestore.instance.collection('books').document().setData({ 'title': 'title', 'author': 'author' });
+
+Get a specific document:
+Firestore.instance.collection('talks').document('document-name').get().then((DocumentSnapshot ds) {
+      // use ds as a snapshot
+    });
+
