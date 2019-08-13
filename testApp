@@ -75,22 +75,58 @@ class DashBoard extends StateFullWidget{
 }
 
 class _DashBoard extends state{
-	List<CustomThreads> threads;
+	List<CustomThread> threads;
+	
+	void addThread(CustomThread thread){
+		setState((){
+			threads.add(thread);
+		});		
+	}
+	void updateThread(int index, CustomThread thread){
+		setState((){
+			threads.add(thread);
+		});		
+	}
+	void deleteThread(CustomThread thread){
+		setState((){
+			threads.add(thread);
+		});		
+	}
+	
 	return Scafold(
 		appBar : AppBar(title : Text('Head')),
 		body: Column(
 			children : <Widget>[ --if not work use expanded.
 				new ListView.builder
 				  (
-					itemCount: litems.length,
+					itemCount: threads.length,
 					itemBuilder: (BuildContext ctxt, int index) {
-					 return new Text(litems[index]);
+						return threads[index];
 					}
 				  )
 			]
 		)
 	)
 }
+
+
+
+class CustomThread extends StatelessWidget{
+	
+	return Cards(
+		child : ListTile(
+			child : Text('Text1'),
+			leading : ,
+			onTap : (){
+				logic to view the thread and 
+				
+			}
+		)
+	)
+	
+}
+
+
 
 clas Login extends statelesswidget{
 	string email; 
@@ -139,5 +175,62 @@ clas Login extends statelesswidget{
 	}
 
 }
+
+
+---Using Form------
+
+class Login extends StatelessWidget{
+	final GlobalKey formKey = GlobalKey();
+	final string email ;
+	final string password ;
+	
+	widget build(BuildContext context){
+		return Scafold(
+			body : Form(
+				key : formKey,
+				child : Column(
+					children : <>[
+						TextFormInput(
+							decoration : InputDecoration(lableText : 'e-mail')
+							validator : (String v){
+								if(!v.contains('@'))
+									return 'please enter valid email' ;
+							},
+							onSaved : (String v){
+								email = v;
+							},
+							InitialVlaue : 'email',
+							keyboardType : TextInputType.emailAddress,
+						),
+						TextFormInput(
+							decoration : InputDecoration(lableText : 'password'),
+							validator : (string v){
+								if(! v.length > 8)
+									return 'password length should be more than 8 character ';
+							},
+							onSaved : (string v){
+								password = v ; 
+							},
+							InitialVlaue : 'pass',
+							obsucuretext : true,
+						),
+						RaisedButton(
+							child : Text('Submit'),
+							onPressed : (){
+								if(formKey.currentStatus.validate())
+									formKey.currentStatus.save();	
+							}
+						)
+						
+					]
+				)
+			
+			)
+		
+		)
+	}
+
+}
+
 
 
