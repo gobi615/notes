@@ -92,7 +92,7 @@ TabBar(tabs: <widget>[Tab(), ...])  -- particularly arrays of tabs widget.
 Tab(icon: Icons(), text : string)
 TabBarView(children: <>[])
 TextField(decoration : InputDecoration(), onChanged : (){}, maxLines: 4,keyboardType: TextInputType.number,obscureText: true,)
-InputDecoration(labelText: string, filled: boolean, fillColor : Colors.white)
+InputDecoration(hintText : string,labelText: string, filled: boolean, fillColor : Colors.white, errorText : snapshot.error)
 SwitchListTile(value: bool, onChanged :(){}, title: Text())
 SizedBox(height: decimal, width : decimal)
 AlertDialog(title: Text('') ,content: Text(), actions: <widget>[btn1, btn2])
@@ -150,7 +150,7 @@ showDialog(context: , builder: (){ return AlertDialog()}, )
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 
-Flutter 
+Firebase 
 ----
 
 plugins - flutterfire.
@@ -166,3 +166,77 @@ Firestore.instance.collection('talks').document('document-name').get().then((Doc
       // use ds as a snapshot
     });
 
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+Quiz App
+
+Widget
+
+MultiProvider( providers: [], child : ) - array of provider. from provider package.
+MaterialApp(navigatorObservers : FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),) // Firebase Analytics
+ThemeData(fontFamily : , bottomAppBarTheme : BottomAppBarTheme(), brightness : Brightness.dark,  textTheme: TextTheme(),buttonTheme:ButtonThemeData())
+BottomAppBarTheme(color: )
+TextTheme(body1 : TextStyle(fontSize : 18), body2 : , button : TextStyle(letterSpacing: 1.5, fontWeight: FontWeight.bold),headline :		  TextStyle(fontWeight: FontWeight.bold),subhead : TextStyle(color: Colors.grey))
+FutureBuilder(future: , builder : )
+
+
+class 
+
+Brightness.dark
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
+Old Course. 
+
+BLOC
+StreamController, StreamTransformer in async package.  
+Sink , Stream, StreamController
+BehaviorSubject() -- a stream Controller to listen more than one place. 
+StreamBuilder(stream : a stream ,builder : (){return widget} )  -- Widgets to listen stream. 
+StreamTransformer<String, String>.fromHandlers(
+	handleData: (email, sink) {
+				if (email.contains('@')) {
+				  sink.add(email);
+				} else {
+				  sink.addError('Enter a valid email');
+				}
+	}
+We can pass a function reference where anonyms function executes.
+Single Global SCope, Scoped Model(using the of keyword. Widgets can use under the parent widget which gives scoped instances.  )
+
+(_) --> underscore means i dont care argument for this particular function.  
+
+rxDart comes because of limitation of async package. rxdart provides wide set of operations for streams.  
+
+	Stream	(async)		 ----- 	Observable (rxdart)
+	StreamController(async) ----	Subject(rxdart)
+
+InheritedWidget --> base class for widgets that propagate information efficiently down the tree.
+, Povider.of(context) --> used for scoped instances. -- to get common obj. 
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+Maps in JS 
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+https://howtodoinjava.com/typescript/maps/
+
+var map1 = new Map([[1 , 2], [2 ,3 ] ,[4, 5]]);
+var map2 = new Map([["firstname" ,"sumit"], ["lastname", "ghosh"], ["website", "geeksforgeeks"]]); 
+var map3 = new Map([["whole numbers", [1 ,2 ,3 ,4]],["Decimal numbers" , [1.1, 1.2, 1.3, 1.4]],["negative numbers", [-1, -2, -3, -4]]]);
+var map4 = new Map([[["first name", "last name"],["sumit", "ghosh"]],[["friend 1", "friend 2"], ["sourav","gourav"]]]);
+
+ 
