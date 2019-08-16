@@ -43,7 +43,7 @@ StateFull --> State clas has the inner changing variable, the connected stateful
 BuildContext
 
 '\$${products[index]['price'].toString()}'  ----> baclslash is escape sequence in dart. 
-
+Listview always takes full availabel space in container. 
 
 
 
@@ -54,8 +54,9 @@ MaterialApp( home: Scafold(), bode: Widget(),theme: ThemeData(), debugShowMateri
 onGenerateRoute: (RouteSettings){ return MaterialPageRoute()}, onUnknownRoute(RouteSettings){   return MaterialPageRoute(0} )
 ThemeData(primarySwatch : Colors.,accentColor: Colors., brightness : Brightness. , child: widget)
 Scafold(appBar: AppBar(),body: widget(), drawer: Drawer())
-AppBar(title: Text(), bottom: TabBar())
+AppBar(title: Text(), bottom: TabBar(), actions: <widget>[])
 Text('', style : TextStyle(fontSize: double, fontWeight : FontWeight.bold, fontFamily : 'Oswald' ))
+MaterialPageRoute(builder: (){ return widget})
 Card(child: Widget)
 Column(crossAxisAlignment: CrossAxisAlignment.center, children: Widget[])
 Image()
@@ -64,6 +65,7 @@ Container(margin: EdgeInsects(), child: widget(),height:double number, padding :
 decoration: BoxDecoration() )
 
 RaisedButton(child: Widget(), onPressed: (){},color: Colors., textColor: Colors.) #color: Theme.of(context).primaryColor or accentColor
+IconButton(icon: Icon(Icons.), onPressed : (){}, color : , )
 ListView( children: widget) -- we cant use beneath other widget
 Expanded(child: widget) - takes remaining space
 ListView.builder(itemBuilder: widget, itemCount: length,) 
@@ -81,26 +83,47 @@ onGenerateRoute: (RouteSettings settings) {return MaterialPageRoute()}
 onUnknownRoute: (RouteSettings settings) {return MaterialPageRoute()}
 Drawer(child: widget())
 	automaticallyImplyLeading :false --> not inherit from parent
-ListTile(title: Text(), onTap:(){})
+ListTile(leading: Icon(), title: Text(), onTap:(){})
+Icon(Icons.list)
 WillPopScope( onWillPop: 
 	(){should return a future with value true/false. With this future value we can go back without pop method. should not use them both}) --> 
 DefaultTabController(length: 2, child: widget(), ) 
-TabBar(tabs: <widget>[Tab()])
+TabBar(tabs: <widget>[Tab(), ...])  -- particularly arrays of tabs widget.
 Tab(icon: Icons(), text : string)
 TabBarView(children: <>[])
 TextField(decoration : InputDecoration(), onChanged : (){}, maxLines: 4,keyboardType: TextInputType.number,obscureText: true,)
-InputDecoration(labelText: string)
+InputDecoration(hintText : string,labelText: string, filled: boolean, fillColor : Colors.white, errorText : snapshot.error)
 SwitchListTile(value: bool, onChanged :(){}, title: Text())
 SizedBox(height: decimal, width : decimal)
 AlertDialog(title: Text('') ,content: Text(), actions: <widget>[btn1, btn2])
 Row( mainAxisAlignment: MainAxisAlignment.center, children : <widget>[], )
-BoxDecoration(color: , borderRadius : )
+BoxDecoration(color: , border: Border.all, borderRadius :BorderRadius.circular(5.0), image : DecorationImage() )
+DecorationImage(fit: BoxFit.cover, colorFilter : , image : AssetImage('assets/background.jpg'))
+AssetImage('assets/background.jpg')
+Center(child : , )
+SingleChildScrollView()
+GestureDetector(child: , onTap: (){])
+
+--*-------------*-----
+Form(key : GlobalKey<FormState>() --> objet, child : Column())  -- > key obj used to control whole form obj/data.
+TextFormField(focusNode: , decoration: , initialValue, maxLines: ,keyboardType : , validator : (){}, onSaved : (){}, obscureText : , ) --> used in forms with validation.
+Note: below two lines executed in submit method.
+_formKey.currentState.save(); --> to execute each onSaved function to save the form value.  No return type.
+_formKey.currentState.validate()  --> to execute each validate method of field and returns any string if validation fails. returns boolean.
+FocusNode() --> each form field has a FoucusNode obj. we can manually create and assign one to controll field focus based on choice. 
+EnsureVisibleWhenFocused(focusNode :FocusNode(), child : TextFormField() )
+-- to turn off field focus by licking anywhere on the form. 
+Widget pageContent = GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Container(
 
 
 classes: 
 ----------------
 List p = [], p.map((elements){})--# called iterable, p.add() --#to add things in the list, use .toList to convert it as list,   
-Colors()
+Colors.black
 EdgeInsects(),
 EdgeInsects.all()
 EdgeInsets.symmetric(horizontal: 6.0, vertical: 2.5)
@@ -112,9 +135,108 @@ double.parse(value)
 FontWeight.bold
 CrossAxisAlignment.center
 BorderRadius.circular(5.0)
-
+TextInputType.emailAddress
+Border.all
+BoxFit.cover,
+ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.dstATop)
+BlendMode.dstATop
+MediaQuery.of(context).size.width
 
 Functions:
 -------------------------
 showDialog(context: , builder: (){ return AlertDialog()}, )
 
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+Firebase 
+----
+
+plugins - flutterfire.
+
+From Dart, you get the reference to Cloud Firestore by calling Firestore.instance
+Firestore.instance.collection('baby').snapshots() to return a stream of snapshots.
+
+Adding a new DocumentReference:
+Firestore.instance.collection('books').document().setData({ 'title': 'title', 'author': 'author' });
+
+Get a specific document:
+Firestore.instance.collection('talks').document('document-name').get().then((DocumentSnapshot ds) {
+      // use ds as a snapshot
+    });
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+Quiz App
+
+Widget
+
+MultiProvider( providers: [], child : ) - array of provider. from provider package.
+MaterialApp(navigatorObservers : FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),) // Firebase Analytics
+ThemeData(fontFamily : , bottomAppBarTheme : BottomAppBarTheme(), brightness : Brightness.dark,  textTheme: TextTheme(),buttonTheme:ButtonThemeData())
+BottomAppBarTheme(color: )
+TextTheme(body1 : TextStyle(fontSize : 18), body2 : , button : TextStyle(letterSpacing: 1.5, fontWeight: FontWeight.bold),headline :		  TextStyle(fontWeight: FontWeight.bold),subhead : TextStyle(color: Colors.grey))
+FutureBuilder(future: , builder : )
+
+
+class 
+
+Brightness.dark
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
+Old Course. 
+
+BLOC
+StreamController, StreamTransformer in async package.  
+Sink , Stream, StreamController
+BehaviorSubject() -- a stream Controller to listen more than one place. 
+StreamBuilder(stream : a stream ,builder : (){return widget} )  -- Widgets to listen stream. 
+StreamTransformer<String, String>.fromHandlers(
+	handleData: (email, sink) {
+				if (email.contains('@')) {
+				  sink.add(email);
+				} else {
+				  sink.addError('Enter a valid email');
+				}
+	}
+We can pass a function reference where anonyms function executes.
+Single Global SCope, Scoped Model(using the of keyword. Widgets can use under the parent widget which gives scoped instances.  )
+
+(_) --> underscore means i dont care argument for this particular function.  
+
+rxDart comes because of limitation of async package. rxdart provides wide set of operations for streams.  
+
+	Stream	(async)		 ----- 	Observable (rxdart)
+	StreamController(async) ----	Subject(rxdart)
+
+InheritedWidget --> base class for widgets that propagate information efficiently down the tree.
+, Povider.of(context) --> used for scoped instances. -- to get common obj. 
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+Maps in JS 
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+https://howtodoinjava.com/typescript/maps/
+
+var map1 = new Map([[1 , 2], [2 ,3 ] ,[4, 5]]);
+var map2 = new Map([["firstname" ,"sumit"], ["lastname", "ghosh"], ["website", "geeksforgeeks"]]); 
+var map3 = new Map([["whole numbers", [1 ,2 ,3 ,4]],["Decimal numbers" , [1.1, 1.2, 1.3, 1.4]],["negative numbers", [-1, -2, -3, -4]]]);
+var map4 = new Map([[["first name", "last name"],["sumit", "ghosh"]],[["friend 1", "friend 2"], ["sourav","gourav"]]]);
+
+ 
