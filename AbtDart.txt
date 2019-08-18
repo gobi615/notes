@@ -167,8 +167,9 @@ Firestore.instance.collection('talks').document('document-name').get().then((Doc
     });
 
 
-
-
+CollectionReference myCollection = Firestore.instance.collection('todolist');
+DocumentReference ds=Firestore.instance.collection('todolist').document(taskname);
+ds.setData(tasks).whenComplete((){})
 
 
 
@@ -240,3 +241,5 @@ var map3 = new Map([["whole numbers", [1 ,2 ,3 ,4]],["Decimal numbers" , [1.1, 1
 var map4 = new Map([[["first name", "last name"],["sumit", "ghosh"]],[["friend 1", "friend 2"], ["sourav","gourav"]]]);
 
  
+ 
+ keytool -exportcert -list -v -alias blog-key -keystore <path-to-production-keystore>
