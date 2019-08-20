@@ -141,6 +141,7 @@ BoxFit.cover,
 ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.dstATop)
 BlendMode.dstATop
 MediaQuery.of(context).size.width
+Alignment.bottomRight
 
 Functions:
 -------------------------
