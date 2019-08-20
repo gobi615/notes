@@ -1,0 +1,31 @@
+intro
+
+Dart is a object oriented programming language si,ilar to java, c-sharp so that means we are going working with objects of a class. 
+Dart is statically typed language that means we have to declare its data type when ever we create a variable. Unlike js its dynamic typing. 
+Dart language runs on dart vm. 
+If your developing mobile apps flutter SDK has build in dart vm to do the job.
+
+
+dart not require a class to start as like in java. it only looks for the main method.
+we can use var keyword to store variable reference/instance. After that that variable only store of that type. 
+
+print functoin used to print not sysout. 
+$ symbol used to print value of a varibale. For complex variable used curly braces {} to print inside the value of braces.
+this also can be used. but not req. 
+
+we can't place main inside of class. if we place vm not picking it up. 
+if no type is defined default it goes to dynamic type for a variable. or value. 
+The main() method lives at the top level. Variables, functions, getters, and setters can all live outside of classes. 
+
+Java declares private instance variables using the private tag, in dart it just _(underscore). 
+Neither main() nor Bicycle is declared as public, because all identifiers are public by default. Dart doesn't have keywords for public, private, or protected.
+constructor not required to have body.
+new keyword can  be removed while creating an object.
+
+if the variable value wont change we can define it as final instead of var. 
+can override toString method to print object value.
+Dart supports single or double quotes when specifying strings.
+Use string interpolation to put the value of an expression inside a string literal: ${expression}. If the expression is an identifier, you can skip the braces: $variableName.
+Shorten one-line functions or methods using fat arrow (=>) notation.
+Uninitialized variables (even numbers) have the value null.
+By default, Dart provides implicit getters and setters for all public instance variables. You don't need to define your own getters/setters unless you want to enforce read-only or write-only variables, compute or verify a value, or update a value elsewhere.
