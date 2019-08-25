@@ -45,6 +45,19 @@ BuildContext
 '\$${products[index]['price'].toString()}'  ----> baclslash is escape sequence in dart. 
 Listview always takes full availabel space in container. 
 
+mainAxisAlignment of column gives alignment in vertical direction in top, center, bottm.
+to add spcing surround column with container and apply padding in container. 
+Container(
+	child : Column(
+		[]
+	)
+)
+In Center there is heightfactor which helps to add height. 
+Center(
+	child : Container(
+		child: 
+	)
+)
 
 
 List Of Widgets
@@ -227,6 +240,11 @@ rxDart comes because of limitation of async package. rxdart provides wide set of
 InheritedWidget --> base class for widgets that propagate information efficiently down the tree.
 , Povider.of(context) --> used for scoped instances. -- to get common obj. 
 
+Publish Subject - Here, if a student entered late into the classroom, he just wants to listen from that point of time when he entered the classroom
+Behavior Subject - It emits the most recently emitted item and all the subsequent items of the source Observable when an observer subscribes to it
+Replay Subject - if a student entered late into the classroom, he wants to listen from the beginning
+Async Subject - if a student entered at any point of time into the classroom, and he wants to listen only about the last thing(and only the last thing) being taught, after class is over. So, here we will use Async.
+
 
 
 ------------------------------------------------------------------------------------------------------------------------------------
@@ -244,3 +262,5 @@ var map4 = new Map([[["first name", "last name"],["sumit", "ghosh"]],[["friend 1
  
  
  keytool -exportcert -list -v -alias blog-key -keystore <path-to-production-keystore>
+ 
+ keytool -list -v -alias androiddebugkey -keystore %USERPROFILE%\.android\debug.keystore
