@@ -124,6 +124,7 @@ Spacer(flex : number)
 CircleAvatar(),
 LinearGradient(),
 ClipPath(clipper : CustomClipper), 
+Align(alignment : Alignment.bottomcenter, child : )
 
 
 --*-------------*-----
@@ -165,6 +166,7 @@ MediaQuery.of(context).size.width
 Alignment.bottomRight
 BorderRadius.circular(double)
 TextDecoration.underline
+Alignment.bottomcenter
 
 Functions:
 -------------------------
