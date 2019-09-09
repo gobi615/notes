@@ -59,6 +59,19 @@ Center(
 	)
 )
 
+Container() --
+	1. try to be big as possible if no child. 
+	2. if child ava, occupy child space.
+	3. if child and align have, try big as possible and aligns child in that space. 
+	
+Differences between SliverList vs ListView in Flutter
+There's almost no difference.
+ListView is a SliverList. Same with GridView, which is a SliverGrid.
+They are doing exactly the same thing. The only difference between them is that SliverList is a sliver, not a widget. Which means it's used inside a ScrollView, usually CustomScrollView.
+ListView is nothing else but a biding of SliverList to transform it into a Widget to make it usable alongside other widgets such as Row/Container.
+Most of the time, use ListView.
+But if you want advanced scroll behavior such as appbar animations with scroll ; you'll need to use a CustomScrollView. Which will force you to use SliverList instead of ListView.
+	
 
 List Of Widgets
 ----------------------
@@ -67,7 +80,7 @@ MaterialApp( home: Scafold(), bode: Widget(),theme: ThemeData(), debugShowMateri
 onGenerateRoute: (RouteSettings){ return MaterialPageRoute()}, onUnknownRoute(RouteSettings){   return MaterialPageRoute(0} )
 ThemeData(primarySwatch : Colors.,accentColor: Colors., brightness : Brightness. , child: widget)
 Scafold(appBar: AppBar(),body: widget(), drawer: Drawer())
-AppBar(title: Text(), bottom: TabBar(), actions: <widget>[])
+AppBar(title: Text(), bottom: TabBar(), centerTitle : bool, actions: <widget>[])
 Text('', style : TextStyle(fontSize: double, fontWeight : FontWeight.bold, fontFamily : 'Oswald', decoration : TextDecoration.underline ))
 MaterialPageRoute(builder: (){ return widget})
 Card(child: Widget)
@@ -114,7 +127,8 @@ BoxDecoration(color: , border: Border.all, borderRadius :BorderRadius.circular(5
 DecorationImage(fit: BoxFit.cover, colorFilter : , image : AssetImage('assets/background.jpg'))
 AssetImage('assets/background.jpg')
 Center(child : , )
-SingleChildScrollView()
+SingleChildScrollView(padding : , scrollDirection : , child : , physics : BouncingScrollPhysics(),)
+BouncingScrollPhysics()
 GestureDetector(child: , onTap: (){])
 
 SafeArea(child : ) --> put in scafold body. to sefely place objects.
@@ -125,6 +139,23 @@ CircleAvatar(),
 LinearGradient(),
 ClipPath(clipper : CustomClipper), 
 Align(alignment : Alignment.bottomcenter, child : )
+Divider(color : , height : double) -- creates a divider line between widgets. eg in between form fields.
+Positioned(child : , bottom : , right : ,), -> position widget in the screen. 
+Stack(overflow : ,) --> 
+Wrap() --> wraps children inside the available space. 
+AnimatedContainer() --> can animate an 	container, can increase its length, width, elivation on the box.
+Opacity(child : , ), AnimatedOpacity() ---> to hide an widget or obj. or animate an obj by hiding and showing.
+FutureBuilder(future : , build : ) -> for async communication, or http communication, give an future and check connection before geeting data from snPSHOT.
+FadeTransition (opacity : , child : ) --> Fades an obj or widget with help of  AnimatedContainer()
+FloatingActionButton (child : , onPressed : (){}, bottomNavigationBar : BottomAppBar(), floatingActionButtonLocation : floatingActionButtonLocation.centerDocked) --> can do docking button to bottombar. 
+BottomAppBar(color : , child : )
+PageView(controller : , children : <>[], scrollDirection : , pageSnapping : ,) --> with PageController can create PageView().
+Table(defaultVerticalAlignment: TableVerticalAlignment.top, defaultColumnWidth:FlexColumnWidth(1.0)/IntrinsicColumnWidth(), children : [TableRow(children : [])]) --> scroll not want then Table(), else Grid()
+SliverAppBar(floating : bool, flexibleSpace : FlexibleSpaceBar(), expandedHeight : ,) --> appBar Scroll effects used with CustomScrollView(sliver : <>[])
+FlexibleSpaceBar(background : )
+SliverFixedExtentList(itemExtend : , delegate : SliverChildListDelegate([]))
+SliverList() & SliverGrid() 
+
 
 
 --*-------------*-----
@@ -167,6 +198,10 @@ Alignment.bottomRight
 BorderRadius.circular(double)
 TextDecoration.underline
 Alignment.bottomcenter
+Alignment(1.0, 1.0);
+FractionalOffset(0,0),
+AlignmentDirectional(1.0, 1.0)
+floatingActionButtonLocation.centerDocked
 
 Functions:
 -------------------------
