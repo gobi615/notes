@@ -71,6 +71,11 @@ They are doing exactly the same thing. The only difference between them is that 
 ListView is nothing else but a biding of SliverList to transform it into a Widget to make it usable alongside other widgets such as Row/Container.
 Most of the time, use ListView.
 But if you want advanced scroll behavior such as appbar animations with scroll ; you'll need to use a CustomScrollView. Which will force you to use SliverList instead of ListView.
+
+
+Issue on InheritedWidget ==> Its immutable. 
+Issue on ScopedModel ==> need to explicitly mention to not to rebuild at each place we using the scoped decendent.
+ 
 	
 
 List Of Widgets
@@ -154,7 +159,9 @@ Table(defaultVerticalAlignment: TableVerticalAlignment.top, defaultColumnWidth:F
 SliverAppBar(floating : bool, flexibleSpace : FlexibleSpaceBar(), expandedHeight : ,) --> appBar Scroll effects used with CustomScrollView(sliver : <>[])
 FlexibleSpaceBar(background : )
 SliverFixedExtentList(itemExtend : , delegate : SliverChildListDelegate([]))
-SliverList() & SliverGrid() 
+SliverList() & SliverGrid()  --> used in customScroll widget for scroll animations.
+FadeInImage.memoryNetwork/assetNetwoek(placeholder: , image : ,) --> some anime if image loading from any network. 
+
 
 
 
