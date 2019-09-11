@@ -162,8 +162,10 @@ SliverFixedExtentList(itemExtend : , delegate : SliverChildListDelegate([]))
 SliverList() & SliverGrid()  --> used in customScroll widget for scroll animations.
 FadeInImage.memoryNetwork/assetNetwoek(placeholder: , image : ,) --> some anime if image loading from any network. 
 
-
-
+ClipRRect(borderradius : , clipbehaviour : , ) -- to clip corner of a square. 
+ClipPath(), ClipOval()
+Hero() --> animation when routing widget. 
+CustomPaint()
 
 --*-------------*-----
 Form(key : GlobalKey<FormState>() --> objet, child : Column())  -- > key obj used to control whole form obj/data.
