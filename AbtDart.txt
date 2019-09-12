@@ -320,3 +320,6 @@ var map4 = new Map([[["first name", "last name"],["sumit", "ghosh"]],[["friend 1
  keytool -exportcert -list -v -alias blog-key -keystore <path-to-production-keystore>
  
  keytool -list -v -alias androiddebugkey -keystore %USERPROFILE%\.android\debug.keystore
+ 
+ random quotes api.
+ https://api.quotable.io/random
