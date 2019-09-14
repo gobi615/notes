@@ -76,6 +76,7 @@ But if you want advanced scroll behavior such as appbar animations with scroll ;
 Issue on InheritedWidget ==> Its immutable. 
 Issue on ScopedModel ==> need to explicitly mention to not to rebuild at each place we using the scoped decendent.
  
+decoration --> BoxDecoration, ShapeDecoration
 	
 
 List Of Widgets
@@ -96,7 +97,7 @@ Container(margin: EdgeInsects(), child: widget(),height:double number, padding :
 decoration: BoxDecoration() )
 
 RaisedButton(child: Widget(), onPressed: (){},color: Colors., textColor: Colors. , shape : RoundedRectangleBorder(), ) #color: Theme.of(context).primaryColor or accentColor
-IconButton(icon: Icon(Icons.), onPressed : (){}, color : , )
+IconButton(icon: Icon(Icons.), onPressed : (){}, color : , tooltip : string, )
 ListView( children: widget) -- we cant use beneath other widget
 Expanded(child: widget) - takes remaining space
 ListView.builder(itemBuilder: widget, itemCount: length,) 
@@ -125,7 +126,7 @@ TabBarView(children: <>[])
 TextField(decoration : InputDecoration(border : ), onChanged : (){}, maxLines: 4,keyboardType: TextInputType.number,obscureText: true,)
 InputDecoration(hintText : string,labelText: string, filled: boolean, fillColor : Colors.white, errorText : snapshot.error)
 SwitchListTile(value: bool, onChanged :(){}, title: Text())
-SizedBox(height: decimal, width : decimal)
+SizedBox(height: decimal, width : decimal) 
 AlertDialog(title: Text('') ,content: Text(), actions: <widget>[btn1, btn2])
 Row( mainAxisAlignment: MainAxisAlignment.center, children : <widget>[], )
 BoxDecoration(color: , border: Border.all, borderRadius :BorderRadius.circular(5.0), image : DecorationImage() )
@@ -161,11 +162,27 @@ FlexibleSpaceBar(background : )
 SliverFixedExtentList(itemExtend : , delegate : SliverChildListDelegate([]))
 SliverList() & SliverGrid()  --> used in customScroll widget for scroll animations.
 FadeInImage.memoryNetwork/assetNetwoek(placeholder: , image : ,) --> some anime if image loading from any network. 
-
 ClipRRect(borderradius : , clipbehaviour : , ) -- to clip corner of a square. 
 ClipPath(), ClipOval()
 Hero() --> animation when routing widget. 
-CustomPaint()
+CustomPaint(painter : , child : ) --> draw an UI/shape in the page and paint. create a child class of cusompaint and impletent on two methods.
+ToolTip(message : , child : )
+FittedBox(alignment : ,fit : , child : ,)
+LayoutBuilder((context, constraint){}) --> build based on screen size of the user. eg.SingleColumnLayout/TwoColumnLAyout
+AbsorbPointer(absorbing : bool, child : ) --> to disable click effect in screen. can bulk widget under this widget to disble grouply.
+Transform() --> to create trasftom animation or effect.
+BackdropFilter(filter: , child : ) - apply filter rotation, skew, blur on images beneath the cild. Mostly used in Stack() widget.  
+Align(alignment : , child : ) - Place widget in defined area of parent widget. Use in Container, Stack. 
+Positioned (top : , left: ...) -- > used in Stack() to position a widget. 
+AnimatedBuilder(animation : , child : , builder: ) -- > build on animation.
+Dismissible(child: , onDismissable : (){}, background: widget, secondaryBackground : widget, direction : DisMisDirection.vertical,)
+ValueListenableBuilder(valueListenable: , child: , builder: (context, value,child){}, ) --> ValueNotifier to declare a variable. builds if value changes.
+Draggable(state: , child : , childWhenDragging: , feedback : ,)
+DragTarget(onAccept: (value){},onWillAccept:(value){},onLeave:(value){},builder :(context, candidate, reject){}) --> landing zone for draggable. 	  	
+AnimatedList(initialItemCount: ,itemBuilder: (context, animation, index){})-->Dynamic lists also called. 
+	AnimatedList.of(context).inserItem(index)/removeItem(index, (context, animation){}), --> inside list
+	GlobalKey anywhere else.
+SlideTransition
 
 --*-------------*-----
 Form(key : GlobalKey<FormState>() --> objet, child : Column())  -- > key obj used to control whole form obj/data.
@@ -211,6 +228,7 @@ Alignment(1.0, 1.0);
 FractionalOffset(0,0),
 AlignmentDirectional(1.0, 1.0)
 floatingActionButtonLocation.centerDocked
+DisMisDirection.vertical
 
 Functions:
 -------------------------
