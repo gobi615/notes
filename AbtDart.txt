@@ -136,7 +136,6 @@ Center(child : , )
 SingleChildScrollView(padding : , scrollDirection : , child : , physics : BouncingScrollPhysics(),)
 BouncingScrollPhysics()
 GestureDetector(child: , onTap: (){])
-
 SafeArea(child : ) --> put in scafold body. to sefely place objects.
 RoundedRectangleBorder(borderRadius : BorderRadius.circular(5.0)
 OutlineInputBorder(borderRadius : ) -- comes inside decoration
@@ -183,6 +182,22 @@ AnimatedList(initialItemCount: ,itemBuilder: (context, animation, index){})-->Dy
 	AnimatedList.of(context).inserItem(index)/removeItem(index, (context, animation){}), --> inside list
 	GlobalKey anywhere else.
 SlideTransition
+Flexible(flex : , child : , fit : FlexFit.tight)
+AnimatedIcon(icon : , progress : ,) --> needs an animation obj.
+AspectRation(child: , aspect : , ) --> enclose with Expanded() widget. use allign to position. eg. aspect 3/2.
+LimitedBox(maxHeight : number,child : ,) --> A box that limits its size only when it's unconstrained. eg. used in ListView() wrap a widget.
+PlaceHolder(color : , stokeWidth : , fallbackheight: ) --> a box to indicate work in progress message in UI.
+RichText(text : TextSpans()) with TextSpans()
+TextSpans(style : , children : ,)
+ReorderableListView(children : , onReorder: (oldIndex, newIndex){}, header : ) --> drag and change order of an ListView().
+AnimatedSwitcher(duration : ,transitionbuilder: (){},child : ) --> animation between switching widgets.
+AnimatedPositioned() --> animate new positioning of the widget.
+AnimatedPadding(padding : , duration : ,child : ,curve : ) --> like padding with animation.
+IndexedStack(children : ,index : ) --> in multiple widgets one which is at the index is visible. --> carosol used.
+Semantics() --> defines what the UI widget means.
+ConstrainedBox() --> specifing maxHeight/maxWidth on box model.
+AnimatedOpacity(child : opacity : , duration : , curve: ) --> fadeout unselected UI 
+
 
 --*-------------*-----
 Form(key : GlobalKey<FormState>() --> objet, child : Column())  -- > key obj used to control whole form obj/data.
@@ -219,7 +234,7 @@ Border.all
 BoxFit.cover,
 ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.dstATop)
 BlendMode.dstATop
-MediaQuery.of(context).size.width
+MediaQuery.of(context).size.width   --> has lot of option to know about the device.
 Alignment.bottomRight
 BorderRadius.circular(double)
 TextDecoration.underline
@@ -229,6 +244,7 @@ FractionalOffset(0,0),
 AlignmentDirectional(1.0, 1.0)
 floatingActionButtonLocation.centerDocked
 DisMisDirection.vertical
+Curves.easeInOut
 
 Functions:
 -------------------------
