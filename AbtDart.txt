@@ -157,7 +157,7 @@ BottomAppBar(color : , child : )
 PageView(controller : , children : <>[], scrollDirection : , pageSnapping : ,) --> with PageController can create PageView().
 Table(defaultVerticalAlignment: TableVerticalAlignment.top, defaultColumnWidth:FlexColumnWidth(1.0)/IntrinsicColumnWidth(), children : [TableRow(children : [])]) --> scroll not want then Table(), else Grid()
 SliverAppBar(floating : bool, flexibleSpace : FlexibleSpaceBar(), expandedHeight : ,) --> appBar Scroll effects used with CustomScrollView(sliver : <>[])
-FlexibleSpaceBar(background : )
+FlexibleSpaceBar(background : , title : )
 SliverFixedExtentList(itemExtend : , delegate : SliverChildListDelegate([]))
 SliverList() & SliverGrid()  --> used in customScroll widget for scroll animations.
 FadeInImage.memoryNetwork/assetNetwoek(placeholder: , image : ,) --> some anime if image loading from any network. 
@@ -197,7 +197,9 @@ IndexedStack(children : ,index : ) --> in multiple widgets one which is at the i
 Semantics() --> defines what the UI widget means.
 ConstrainedBox() --> specifing maxHeight/maxWidth on box model.
 AnimatedOpacity(child : opacity : , duration : , curve: ) --> fadeout unselected UI 
-
+CustomScrollView() --> creates custom scroll effects using silvers.
+SliverGrid(gridDelegate : SliverGridDelegateWithMaxCrossAxisExtent(), delegate: SliverChildBuilderDelegate())
+SliverFixedExtentList()
 
 --*-------------*-----
 Form(key : GlobalKey<FormState>() --> objet, child : Column())  -- > key obj used to control whole form obj/data.
