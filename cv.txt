@@ -1,0 +1,10 @@
+Compound eyes --> has many lenses in diffeenct layer.
+spatial coherency --> other sensor image also used to process not only camera image.
+other electives 
+	Udacity's deep learning program 
+	CNN and Feature Visualization
+	Review: Training a Neural Network.
+OpenCV is image processing lib. toGreyScale, BRGtoRGB,
+OpenCV reads in images in BGR format
+
+
