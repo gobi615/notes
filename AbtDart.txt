@@ -17,7 +17,8 @@ runApp(1stWidget())
 
 Notes:
 @Override annotation not req
-Whenever any image or static data is added, need to mention in pubspec.yaml file under assests section as in commented text format.
+Whenever any image or s
+tatic data is added, need to mention in pubspec.yaml file under assests section as in commented text format.
 setState((){}) callback is executed for statefull widget state changes 
 initState() - runs before build method when state first creates.
 for statefull widget data can be pased using widget property
@@ -26,19 +27,25 @@ StateFull --> constructor(), initState(), build(), setState(), didUpdateWidget()
 positional argument and name argument 
 Container() - if nothing wants to print on screen return empty container instead of null.
 
-Numbers: num  => Split into int  (e.g. 42 ) and double (e.g. 2.5 )
+Numbers: num data type(stores int and double) => Split into int  (e.g. 42 ) and double (e.g. 2.5 )
 Text: String  => e.g. 'Hello!' 
 Booleans: bool => true  or false 
-Lists: Multiple, ordered elements => e.g. [1, 2, 3] 
-Maps: Multiple, named and unordered elements => e.g. {'name': 'Max', 'age': 29} 
+Lists: Multiple, ordered elements => e.g. List<int> things = [1, 2, 3];
+Maps: Multiple, named and unordered elements => 
+Map state = { 'lucky': 23 };
+state['unlucky'] = 11; 
 
 void initState() {
     super.initState();
     _products.add(widget.startingProduct);  
-  }
+}
 
 StateFull --> State clas has the inner changing variable, the connected statefull class is immutable class so the varibale declared are final.
 		To access the properties of the connected statefull class use widget keyword in initState method of state class. with this we can pass data from other class to this statefull class constructor and it comes to state.
+		
+final vs const 
+- final - one time assignable in the environment. can modify the object properties.
+  const - one time assignable and can not modify the object properties. means constant
 
 BuildContext
 
@@ -58,6 +65,9 @@ Center(
 		child: 
 	)
 )
+other way is adding 
+SeizedBox() -- specify the space in pixels. or  
+Spacer() -- adds space by flex properties.
 
 Container() --
 	1. try to be big as possible if no child. 
@@ -76,17 +86,18 @@ But if you want advanced scroll behavior such as appbar animations with scroll ;
 Issue on InheritedWidget ==> Its immutable. 
 Issue on ScopedModel ==> need to explicitly mention to not to rebuild at each place we using the scoped decendent.
  
-decoration --> BoxDecoration, ShapeDecoration
+decoration --> BoxDecoration, ShapeDecoration, InputDecoration, TextDecoration
+shape ---> RoundedRectangleBorder, OutlineInputBorder
 	
 
 List Of Widgets
 ----------------------
 StatelessWidget(@O Build())
-MaterialApp( home: Scafold(), bode: Widget(),theme: ThemeData(), debugShowMaterialGrid : true, routes:{}, routes: {}, 
+MaterialApp( home: Scafold(),theme: ThemeData(), debugShowMaterialGrid : true, routes:{}, title : ''
 onGenerateRoute: (RouteSettings){ return MaterialPageRoute()}, onUnknownRoute(RouteSettings){   return MaterialPageRoute(0} )
-ThemeData(primarySwatch : Colors.,accentColor: Colors., brightness : Brightness. , child: widget)
+ThemeData(primarySwatch : Colors.,accentColor: Colors., brightness : Brightness.)
 Scafold(appBar: AppBar(),body: widget(), drawer: Drawer())
-AppBar(title: Text(), bottom: TabBar(), centerTitle : bool, actions: <widget>[])
+AppBar(title: widget-> Text/Row/Column, elevations: , bottom: TabBar(), centerTitle : bool, actions: <widget>[], iconTheme :IconThemeData(), textTheme : TextTheme() )
 Text('', style : TextStyle(fontSize: double, fontWeight : FontWeight.bold, fontFamily : 'Oswald', decoration : TextDecoration.underline ))
 MaterialPageRoute(builder: (){ return widget})
 Card(child: Widget)
@@ -120,9 +131,9 @@ Icon(Icons.list)
 WillPopScope( onWillPop: 
 	(){should return a future with value true/false. With this future value we can go back without pop method. should not use them both}) --> 
 DefaultTabController(length: 2, child: widget(), ) 
-TabBar(tabs: <widget>[Tab(), ...])  -- particularly arrays of tabs widget.
+TabBar(tabs: <widget>[Tab(), ...])  -- particularly arrays of tabs widget. -- in Appbar, bottom properties.
 Tab(icon: Icons(), text : string)
-TabBarView(children: <>[])
+TabBarView(children: <>[]) 
 TextField(decoration : InputDecoration(border : ), onChanged : (){}, maxLines: 4,keyboardType: TextInputType.number,obscureText: true,)
 InputDecoration(hintText : string,labelText: string, filled: boolean, fillColor : Colors.white, errorText : snapshot.error)
 SwitchListTile(value: bool, onChanged :(){}, title: Text())
@@ -150,14 +161,14 @@ Stack(overflow : ,) -->
 Wrap() --> wraps children inside the available space. 
 AnimatedContainer() --> can animate an 	container, can increase its length, width, elivation on the box.
 Opacity(child : , ), AnimatedOpacity() ---> to hide an widget or obj. or animate an obj by hiding and showing.
-FutureBuilder(future : , build : ) -> for async communication, or http communication, give an future and check connection before geeting data from snPSHOT.
+FutureBuilder(future : , build : ) -> for async communication, or http communication, give an future and check connection before geeting data from snaPSHOT.
 FadeTransition (opacity : , child : ) --> Fades an obj or widget with help of  AnimatedContainer()
 FloatingActionButton (child : , onPressed : (){}, bottomNavigationBar : BottomAppBar(), floatingActionButtonLocation : floatingActionButtonLocation.centerDocked) --> can do docking button to bottombar. 
-BottomAppBar(color : , child : )
+BottomAppBar(color : , child : ) --> bottom menus also with FAB.
 PageView(controller : , children : <>[], scrollDirection : , pageSnapping : ,) --> with PageController can create PageView().
 Table(defaultVerticalAlignment: TableVerticalAlignment.top, defaultColumnWidth:FlexColumnWidth(1.0)/IntrinsicColumnWidth(), children : [TableRow(children : [])]) --> scroll not want then Table(), else Grid()
 SliverAppBar(floating : bool, flexibleSpace : FlexibleSpaceBar(), expandedHeight : ,) --> appBar Scroll effects used with CustomScrollView(sliver : <>[])
-FlexibleSpaceBar(background : , title : )
+FlexibleSpaceBar(background : , title : ) --> used in silverAppBar --
 SliverFixedExtentList(itemExtend : , delegate : SliverChildListDelegate([]))
 SliverList() & SliverGrid()  --> used in customScroll widget for scroll animations.
 FadeInImage.memoryNetwork/assetNetwoek(placeholder: , image : ,) --> some anime if image loading from any network. 
