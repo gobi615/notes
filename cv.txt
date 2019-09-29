@@ -7,4 +7,12 @@ other electives
 OpenCV is image processing lib. toGreyScale, BRGtoRGB,
 OpenCV reads in images in BGR format
 
+python libs
+numpy
+matplotlib.image as as mpimg - # for reading in images
+matplotlib.pyplot as plt - to plot image
+cv2 - # computer vision library
 
+read image from file.
+change image to grey color using cv2 lib. which gives image in a 2D array. --(do some modification in the number if want)
+ 
