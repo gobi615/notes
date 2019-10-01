@@ -15,4 +15,17 @@ cv2 - # computer vision library
 
 read image from file.
 change image to grey color using cv2 lib. which gives image in a 2D array. --(do some modification in the number if want)
- 
+
+Read in the image
+Print out the type of image data and its dimensions (height, width, and color)
+Make a copy of the image
+Change color to RGB (from BGR)
+Display the image copy
+TODO: Define the color selection boundaries in RGB values. play around with these values until you isolate the blue background
+Define the masked area
+Vizualize the mask
+Mask the image to let the pizza show through
+Load in a background image, and convert it to RGB 
+Crop it to the right size (514x816)
+Mask the cropped background so that the pizza area is blocked
+Display the background
