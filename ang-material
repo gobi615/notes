@@ -1,0 +1,198 @@
+Angular Material
+
+get started
+1. npm install --save @angular/material @angular/cdk @angular/animations
+2. configure animations
+	Once the animations package is installed, import BrowserAnimationsModule into your application to enable animations support.
+
+	import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+	@NgModule({
+	  ...
+	  imports: [BrowserAnimationsModule],
+	  ...
+	})
+	export class PizzaPartyAppModule { }
+3. Import the component modules
+	Import the NgModule for each component you want to use:
+
+	import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+
+	@NgModule({
+	  ...
+	  imports: [MatButtonModule, MatCheckboxModule],
+	  ...
+	})
+	export class PizzaPartyAppModule { }
+4. Include a theme
+	Including a theme is required to apply all of the core and theme styles to your application.
+
+	To get started with a prebuilt theme, include one of Angular Material's prebuilt themes globally in your application. If you're using the Angular CLI, you can add this to your styles.css:
+
+	@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+	If you are not using the Angular CLI, you can include a prebuilt theme via a <link> element in your index.html.
+5. Gesture Support
+	Some components (mat-slide-toggle, mat-slider, matTooltip) rely on HammerJS for gestures. In order to get the full feature-set of these components, HammerJS must be loaded into the application. 
+	
+	npm install --save hammerjs
+	
+	After installing, import it on your app's entry point (e.g. src/main.ts).
+	import 'hammerjs';
+6. Add Material Icons
+	If you want to use the mat-icon component with the official Material Design Icons, load the icon font in your index.html.
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	For more information on using Material Icons, check out the Material Icons Guide.
+
+	Note that mat-icon supports any font or svg icons; using Material Icons is one of many options.
+
+-----------------------------------------------*-----------------------------------*--------------------------------------------------------*-------------------------
+
+Button - Angular Material buttons are native <button> or <a> elements enhanced with Material Design
+<button mat-button>Click me!</button>
+
+import {MatButtonModule} from '@angular/material/button';
+
+Attributes
+mat-button :	Rectangular text button w/ no elevation
+mat-raised-button :	Rectangular contained button w/ elevation
+mat-flat-button :	Rectangular contained button w/ no elevation
+mat-stroked-button : Rectangular outlined button w/ no elevation
+mat-icon-button : Circular button with a transparent background, meant to contain an icon
+mat-fab : Circular button w/ elevation, defaults to theme's accent color
+mat-mini-fab : Same as mat-fab but smaller
+disabled : to dsiable the btn 
+
+Theming -  color : primary/accent/warn.
+Capitalization - text-transform: uppercase
+
+Forms
+FormField - 
+supports 4 different appearance variants which can be set via the appearance input - legacy, standard, fill, outline.
+for legacy appearance placeholder promoted to label. 
+<mat-form-field appearance="legacy">
+	<mat-label>Legacy form field</mat-label>
+	<input matInput placeholder="Placeholder">
+	<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+	<mat-hint>Hint</mat-hint>
+ </mat-form-field>
+Floating label - <mat-label></mat-label>. FloatLabel of form-field - auto/always/never.  
+matPrefix and matSuffix directives for <mat-icon></mat-icon>
+form-control directive - required
+HintLabel - 2 ways. hintLabel of form-field(always start position) or <mat-hint align="start/end(position)">. {{input.value?.length || 0}}/10 to show remaining letter space. 
+error messages - <mat-error> element. toggle btw error message using ngif/ngswitch 
+import {FormControl, Validators} from '@angular/forms';
+email = new FormControl('', [Validators.required, Validators.email]);
+<mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')"> Please enter a valid email address</mat-error>
+<mat-error *ngIf="emailFormControl.hasError('required')">Email is <strong>required</strong></mat-error>
+Prefix & suffix - Adding the matPrefix/matSuffix directive to an element inside the <mat-form-field> will designate it as the prefix/suffix.
+Theming - [color] = "primary/accent/warm" 
+
+Input - element <input> and <textarea>, directive : matInput, works with(work inside) :  <mat-form-field><\mat-form-field>
+import {MatInputModule} from '@angular/material/input';
+attributes - native attribues can be used. placeholder used.
+all form field features can be used here - error messages, hint text, prefix & suffix, and theming
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+    <mat-hint>Errors appear instantly!</mat-hint>
+    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')"> Please enter a valid email address </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')"> Email is <strong>required</strong> </mat-error>
+  </mat-form-field>
+</form>
+emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+Auto-resizing <textarea> elements - cdkTextareaAutosize directive
+
+checkbox - <mat-checkbox> provides the same functionality as a native <input type="checkbox"> enhanced with Material Design styling and animations.
+import {MatCheckboxModule} from '@angular/material/checkbox';
+Checkbox label - labelPosition property - before/after
+Indeterminate state - indeterminate property.
+Theming - [color] = "primary/accent/warm"
+
+RadioButton - <mat-radio-button> provides the same functionality as a native <input type="radio"> enhanced with Material Design styling and animations.
+import {MatRadioModule} from '@angular/material/radio';
+<mat-radio-group aria-label="Select an option">
+  <mat-radio-button value="1">Option 1</mat-radio-button>
+  <mat-radio-button value="2">Option 2</mat-radio-button>
+</mat-radio-group>
+label - labelPosition property - before/after 
+<mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="favoriteSeason">
+	<mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">{{season}}</mat-radio-group>
+</mat-radio-group>
+<div>Your favorite season is: {{favoriteSeason}}</div>
+
+Select - <mat-select> is a form control for selecting a value from a set of options. <mat-option> elements to the <mat-select>.
+import {MatSelectModule} from '@angular/material/select';
+<mat-form-field>
+  <mat-label>Favorite food</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let food of foods" [value]="food.value">
+      {{food.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<h4>Basic native select</h4>
+<mat-form-field>
+  <mat-label>Cars</mat-label>
+  <select matNativeControl required>
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="mercedes">Mercedes</option>
+    <option value="audi">Audi</option>
+  </select>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Select an option</mat-label>
+  <mat-select [(value)]="selected">
+    <mat-option>None</mat-option>
+    <mat-option value="option1">Option 1</mat-option>
+    <mat-option value="option2">Option 2</mat-option>
+    <mat-option value="option3">Option 3</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<p>You selected: {{selected}}</p>
+Form field feature can be used here.
+disabled property to disable a option or entire select. 
+Resetting the select value - give 'None' for one of the option.
+group of option : <mat-optgroup>
+Multiple selection :  
+<mat-select [formControl]="toppings" multiple>
+	<mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+</mat-select>
+Customizing the trigger label - 
+Disabling the ripple effect - 
+Adding custom styles to the dropdown panel - 
+Changing when error messages are shown - 
+Keyboard interaction - 
+
+Slider - <mat-slider min="1" max="5" step="0.5" value="1.5"></mat-slider>
+import {MatSliderModule} from '@angular/material/slider';
+orientation - vertical/invert
+Thumb label - <mat-slider thumbLabel tickInterval="1"></mat-slider>
+ Tick marks - <mat-slider step="4" tickInterval="3"></mat-slider>
+ 
+Slider Toggle - <mat-slide-toggle> is an on/off control that can be toggled via clicking or dragging.<mat-slide-toggle>Slide me!</mat-slide-toggle>
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+Slide-toggle label - provided in element.
+Theming - as usual.
+
+
+Menu - <mat-menu> is a floating panel containing list of options.
+import {MatMenuModule} from '@angular/material/menu';
+<button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+Toggling the menu programmatically - this.trigger.openMenu();
+Icons - mat-icon elements inside the button.
+Customizing menu position - xPosition (before | after) and yPosition (above | below), [overlapTrigger]="false"
+Nested menu - 
+Lazy rendering - 
+Passing in data to a menu - 
+Keyboard interaction - 
+
+
