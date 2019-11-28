@@ -195,4 +195,101 @@ Lazy rendering -
 Passing in data to a menu - 
 Keyboard interaction - 
 
+toolbar - <mat-toolbar> is a container for headers, titles, or actions.
+import {MatToolbarModule} from '@angular/material/toolbar';
+ Single row :
+<mat-toolbar>
+  <span>My Application</span>
+</mat-toolbar>
+Multiple rows : 
+<mat-toolbar>  
+  <mat-toolbar-row>
+    <span>First Row</span>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row>
+    <span>Second Row</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+Positioning toolbar content :  display: flex
+ Theming - COlor
+ 
+Sidenav :
+<mat-sidenav-container class="example-container" *ngIf="shouldRun">
+  <mat-sidenav mode="side" opened>Sidenav content</mat-sidenav>
+  <mat-sidenav-content>Main content</mat-sidenav-content>
+</mat-sidenav-container>
+<mat-drawer-container class="example-container" [hasBackdrop]="hasBackdrop.value">
+  <mat-drawer #drawer [mode]="mode.value">I'm a drawer</mat-drawer>
+  <mat-drawer-content>
+    <mat-form-field>
+      <mat-label>Sidenav mode</mat-label>
+      <mat-select #mode value="side">
+        <mat-option value="side">Side</mat-option>
+        <mat-option value="over">Over</mat-option>
+        <mat-option value="push">Push</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Has backdrop</mat-label>
+      <mat-select #hasBackdrop>
+        <mat-option>Unset</mat-option>
+        <mat-option [value]="true">True</mat-option>
+        <mat-option [value]="false">False</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button (click)="drawer.toggle()">Toggle drawer</button>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+card - <mat-card> is a content container for text, photos, and actions in the context of a single subject.
+ import {MatCardModule} from '@angular/material/card';
+ Basic card sections
+<mat-card-title>	Card title
+<mat-card-subtitle>	Card subtitle
+<mat-card-content>	Primary card content. Intended for blocks of text
+<img mat-card-image>	Card image. Stretches the image to the container width
+<mat-card-actions>	Container for buttons at the bottom of the card
+<mat-card-footer>	Section anchored to the bottom of the card
+card header : <mat-card-header>
+<mat-card-title>	A title within the header
+<mat-card-subtitle>	A subtitle within the header
+<img mat-card-avatar>	An image used as an avatar within the header
+Title groups : <mat-card-title-group> can be used to combine a title, subtitle, and image into a single section. This element can contain:
+<mat-card-title>
+<mat-card-subtitle>
+One of:
+<img mat-card-sm-image>
+<img mat-card-md-image>
+<img mat-card-lg-image>
+
+Divider - <mat-divider> is a component that allows for Material styling of a line separator with various orientation options.
+import {MatDividerModule} from '@angular/material/divider';
+<mat-list>
+  <mat-list-item>Item 1</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>Item 2</mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>Item 3</mat-list-item>
+</mat-list>
+Simple divider - 
+Inset divider - 
+Vertical divider - 
+Lists with inset dividers - 
+
+Table : The mat-table provides a Material Design styled data-table that can be used to display rows of data.
+Write your mat-table and provide data :
+<table mat-table [dataSource]=”myDataArray”>
+  ...
+</table>
+renderRows() - to update the table.
+Define the column templates : 
+<ng-container matColumnDef="userName">
+  <th mat-header-cell *matHeaderCellDef> Name </th>
+  <td mat-cell *matCellDef="let user"> {{user.name}} </td>
+</ng-container>
+Define the row templates : columnsToDisplay = ['userName', 'age'];
+<tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+<tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+
 
