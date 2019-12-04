@@ -292,4 +292,6 @@ Define the row templates : columnsToDisplay = ['userName', 'age'];
 <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
 <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
 
+Dialog Box - The MatDialog service can be used to open modal dialogs with Material Design styling and animations.
+
 
