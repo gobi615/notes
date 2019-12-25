@@ -247,3 +247,134 @@ for (int k = 1; k <= ar[i]; k++) {
 }
 
 return m2;
+
+
+
+
+
+
+package ds.gobi.may12;
+
+public class LinkedList {
+	
+	public Node head;
+	
+	static class Node{
+		public Integer data;
+		public Node next;
+		
+		public Node(Integer d){
+			this.data = d ;
+			this.next = null;
+		}
+
+		@Override
+		public String toString() {
+			return "Node [data=" + data + ", next=" + next + "]";
+		}	
+		
+	}
+	
+	public void addAtEnd(Integer d){
+		if(head == null){
+			head = new Node(d);
+			return;
+		}
+		
+		Node temp = head;
+		while(temp.next != null){
+			temp = temp.next;
+		}
+		temp.next = new Node(d);
+		
+	}
+	public void addAtBeg(Integer d){
+		
+		if(head == null){
+			head = new Node(d);
+			return;
+		}		
+		Node temp = head;
+		head = new Node(d);
+		head.next = temp;		
+	
+	}
+	public void addAfter(Integer oVal, Integer nVal){
+		
+		if(head == null){
+			head = new Node(nVal);
+			return;
+		}
+		
+		Node temp = head ;		
+		while(temp.data != oVal){			
+			temp = temp.next;
+		}
+		
+		Node temp1 = temp.next; // [data=3, next=null
+		temp.next = new Node(nVal);
+		temp.next.next = temp1;			
+	}
+
+	public static void main(String[] args) {
+		LinkedList list = new LinkedList();
+		list.addAtBeg(1);
+		list.addAtBeg(2);
+		list.addAtEnd(3);		
+		list.addAfter(3, 6);		
+		list.addAtBeg(5);
+		list.addAtEnd(4);
+		list.addAfter(2, 13);		
+		list.addAtBeg(12);
+		list.addAtEnd(11);		
+//		list.addAfter(6, 15);	
+		System.out.println(list.head.toString());
+//		list.deleteANde(15);
+		System.out.println(list.head.toString());
+		list.countElement();
+		
+		list.getMiddleNode();
+	}
+	private void getMiddleNode() {
+		Node temp = head;
+		Node mid = head;
+		int length = 0;
+		
+		while(temp.next != null){
+			length++;
+			if(length % 2 == 0){
+				mid = mid.next ;
+			}
+			temp = temp.next;
+		}
+		
+		System.out.println("The Middle Node is "+mid.data);
+		
+	}
+	
+	private void countElement() {
+		
+		int count = 0;
+		Node next = head; 
+		while(next.next != null){
+			count++;
+			next = next.next;
+		}
+		System.out.println(count+1);
+		
+	}
+	private void deleteANde(int i) {
+		
+		Node next = head;
+		Node prev = head;
+		while(next.data != i){
+			prev = next;
+			next = next.next;			
+		}		
+		prev.next = next.next;		
+	}
+	
+	
+
+}
+
