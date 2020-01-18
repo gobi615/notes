@@ -34,3 +34,23 @@ public TreeNode searchBST(TreeNode root, int val) {
     }
 -------------------------------------------------------------------------------------
 
+Bitwise Operators. 
+Bit Operators -- &, |, ^, ~, <<, >>. (all other byte operators(+,-...))
+All bitwise operators operate on binary data. 
+Bitwise operators used only on integer data (byte, int ,short, long)
+4(100) & 5(101) -- 4(100) 
+4(100) | 5(101) -- 5(101)
+4(100) ^ 5(101) -- 1(001)
+~4(00..100) -- -5 --need to consider full 32 bits.
+      1. invert all the bits. 
+      2. take 1st bit as sign bit(1 means -ve and 0 means +ve).
+      3. take 2's complement for remaining 31 bits.
+      4. 2's complement(invert the bits then add 1 at lower end)
+In computers -ve numbers are represented in 2's complement form.       
+
+
+
+
+
+
+
