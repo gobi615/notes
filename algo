@@ -47,6 +47,7 @@ Bitwise operators used only on integer data (byte, int ,short, long)
       3. take 2's complement for remaining 31 bits.
       4. 2's complement(invert the bits then add 1 at lower end)
 In computers -ve numbers are represented in 2's complement form.       
+To count 1s in a number. do AND that number with 1 and do right shift to remove this digit and check next digit.
 
 
 
