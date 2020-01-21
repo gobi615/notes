@@ -1,0 +1,111 @@
+Java to Python
+
+No need of main method. sequential execution in a python sourcefile.
+end of statement is denoted by line termination not semicolon. So use backlash(\) if the statement is too long to fit in the single line exemptions for f().
+# symbol used for comments
+uses indentation level of statements to define statement blocks  instead of braces {}. indentation should be uniform within the block.
+If requires statement block finished with colon(:).  
+names can be as same as java. only underscore used from the special character family to use in identifier.
+has 4 primitive types. integer, long integer, floating-point, complex
+Other types Boolean, Strings
+Sequences : list(or array) , tuple(can not be changed once created)
+Collection : dictionary, set 
+All data type are treated as classes including primitive types. so variables store the reference of the obj.
+variables does not have types. only objects have types. variables store the reference of the obj with no issue of other type obj on reassigning.
+No constant as like in java. but all caps convention is used to denote that.
+Additional operators ** -> exponentiation, // integer division always. No increment and decrement operator.
++= -= *= /= %= **= //= --> order of precedance. 
+int > long > float > complex --> ranks of numeric types. used in 
+functions are not defined within a class. there are some global functions which we can use directly. 
+No types are placed in function parameters. has return 
+importing math packages : from math import * (import all math class). if from not used need to specify module name before class names.eg. datetime.date()
+obj creation : today = date( 2006, 8, 25 ). no new keyword. dot operator is used to access obj parameters.
+complex(x,y), int(x), float(z), long(x) --> takes string/number in argument and converts to its type.
+raw_input() --> is used to take keyboard input. can pass a string as argument to tell to enter the input. reads as string.
+print() --> statement not a function. displays output, () is optional. eg. print avg & print "Your average grade = ", avg. can format the output using % operator
+str() --> string class, \ escape sequence, """ -> block string, ''' also used for same purpose.
+len(string) - length of string, string[0] --> to get beginig character of a string. negative index from end to string[-1 to -len] also used.
+: slicing operator for substrings from string. name[0:4]
+String duplication eg. print "-" * 45. * - python repeat operator.
+String comparison operator == , to compare reference 'is' operator.
+null reference is checked : name1 is None
+if condition#
+	if avgGrade >= 90.0 :
+	letterGrade = "A"
+	elif avgGrade >= 80.0 :
+	letterGrade = "B"
+	elif avgGrade >= 70.0 :
+	letterGrade = "C"
+	elif avgGrade >= 60.0 :
+	letterGrade = "D"
+	else:
+	letterGrade = "F"
+equals 		-- ==
+compareTo 	-- <, >
+contains	-- in, not in 
+loops# 
+	while value < 0 :
+		value = int( raw_input( "Enter a postive integer: " ) )
+	for i in xrange( 1, 11 , 2) :
+		print i
+	for ch in text :
+		if ch in "aeiou" :
+			numVowels = numVowels + 1
+A Python function contains a header and body. The function header is specified using the def keyword while the function body is specified as a statement block
+default argument in function parameter is available. with step =1 as a parameter 
+named arguments also there in py 
+All functions in Python return a value whether you specify one or not
+function is created as a obj with function name as object name. 
+global operator to modify global variable in a function body. can not modify the varibale outside of the scope.
+no array. list is available.eg. gradeList = [ 85, 90, 87, 65, 91 ]. used in for loop in operator. 
+	list.add(8) 	-- list.append(8)
+					-- list.extend([2,3,5]) --> append multiple items
+	list.add(1,8)	-- list.insert(1,8)
+	list.remove(8)	-- list.remove(8)
+					-- list.pop( 1 ) --> removes item at index. 
+					-- list.pop() --> fetch and removes last item in the list.
+	l.indexAt(item)	-- list.index( item )
+	l.contains(item)-- 100 in list 
+					-- list.count( item ) --> occurance count of item.
+					-- min(list)
+					-- max(list)
+					-- list1 + list2 --> concatenate list.
+					-- list.reverse() -- > reverse the order. 
+	
+from Doc list operations.
+	operator
+		a = [] Create an empty list. This is equivalent to creating a Vector object in Java.
+		b = [0, 1, 2] Create a list using a literal list representation.
+		b[i] Access the ith element of list b.
+		b * 4 Replicate the elements of list b four times to create a new list.
+		a + b Concatenate the elements of lists a and b to create a new list.
+		del b[i] Delete the ith element from list b.
+		for x in list Iterate over each element in the list.
+		x in list Determine if x is an element in the list.
+		len( b ) Returns the length or the number of elements of list b.
+	Class Methods
+		append( obj ) Appends the object obj to the end of the list.
+		extend( listobj ) Appends all items in list listobj to the end of the list.
+		index( obj )
+		Searches the list and returns the index of the first element containing the
+		obj item. The search is based on the value of te object and not the
+		reference. If the item is not in the list, an exception is raised.
+		reverse() Reverses the ordering of the items within the list.
+		sort() Sort the elements of the list in ascending order	
+
+	
+tuple #
+	t = ( 0, 2, 4 ) # 3 element tuple
+	a = ( 2, ) # 1 element tuple
+	b = ( 'abc', 1, 4.5, 5 ) # 4 element mixed tuple
+	c = ( 0, ( 'a', 'b' ) ) # nested tuple
+
+class#
+class name :
+	def fun() : 
+		a = 2+3 
+
+all are public by default. 
+
+try, catch() --> try, except 		
+		
