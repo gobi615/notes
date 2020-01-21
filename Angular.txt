@@ -1,1 +1,3 @@
 Put await before promise method call.
+and if u put await then put async also.
+
