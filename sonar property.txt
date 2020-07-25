@@ -3,15 +3,15 @@ sonar.projectKey=
 sonar.projectVersion=1.0
 sonar.projectName=
 
-sonar.sources=C:/Users/1597983/Documents/Vikram_sarabai/eSpeedDev/AE_DelCh_Screen_Dev/sonar/source
-#sonar.tests = C:/Users/1597983/Documents/Vikram_sarabai/eSpeedDev/Sonar-DelChnl/test
+sonar.sources=C:/Users/dummy/Documents/dummy/eSpeedDev/AE_DelCh_Screen_Dev/sonar/source
+#sonar.tests = C:/Users/dummy/Documents/dummy/eSpeedDev/Sonar-DelChnl/test
 
 sonar.language=java
 
-sonar.projectBaseDir=C:/Users/1597983/Documents/Vikram_sarabai/eSpeedDev/AE_DelCh_Screen_Dev/sonar
+sonar.projectBaseDir=C:/Users/dummy/Documents/dummy/eSpeedDev/AE_DelCh_Screen_Dev/sonar
 
-sonar.java.binaries=C:/Users/1597983/Documents/Vikram_sarabai/eSpeedDev/AE_DelCh_Screen_Dev/sonar/class
-sonar.java.libraries=C:/Users/1597983/Documents/Vikram_sarabai/eSpeedDev/AE_DelCh_Screen_Dev/sonar/lib
+sonar.java.binaries=C:/Users/dummy/Documents/dummy/eSpeedDev/AE_DelCh_Screen_Dev/sonar/class
+sonar.java.libraries=C:/Users/dummy/Documents/dummy/eSpeedDev/AE_DelCh_Screen_Dev/sonar/lib
 
 sonar.sourceEncoding=UTF-8
 

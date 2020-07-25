@@ -94,4 +94,13 @@ Colliders
         - can be usefull to add a controll in the animation. eg. changing speed, color
     - Coroutine -> to create multiple of same gameObject
    
+
+Domains Ideas
+firetron.io
+eltron.io
+infotron.io
+codetron.io
+setron.io
+instantdomainsearch
+  
   

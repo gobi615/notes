@@ -4,6 +4,7 @@ C - Clear and organized thinking
 D - Drive discussions with 80-20 rule
 
 Things to consider
+------------------
 Features
 API
 Availability
@@ -15,10 +16,13 @@ Security and Privacy
 Cost-effective
 
 Concepts to know
+-------------------
 Vertical vs horizontal scaling
+     https://medium.com/@abhinavkorpal/scaling-horizontally-and-vertically-for-databases-a2aef778610c
 CAP theorem
      https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/
      https://www.quora.com/What-Is-CAP-Theorem-1
+     -- Partition tolerance, in this context, means the ability of a data processing system to continue processing data even if a        network partition(different subnets) causes communication errors between subsystems.
 ACID vs BASE
 Partitioning/Sharding 
 Consistent Hashing
