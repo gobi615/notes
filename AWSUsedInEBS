@@ -1,0 +1,337 @@
+What are all the  components moving to AWS Cloud ?
+•	Database Server
+•	Application Server
+•	Web Server
+•	Deployment Manager – Not Applicable for JBOSS
+
+What are all Components running in On-Prem ( current Datacentre) ?
+•	Control-M Agent ( Interface Server)   - Will be moving to cloud during Philippines Migration
+•	MQ Server            - Legacy components are not supported in cloud
+•	Socket Server       - Current Sockets are not TLS1.2 supported due to legacy interface
+•	CDC Server            - Will be replaced with New Auditing solution
+
+AWS Resources Used in eBBS:
+
+AWS Resource Name	Usage
+RDS	- Relational Database Service	- Aurora PostgreSQL RDS will be used instead of DB2 Database,
+EC2 - Elastic Compute Cloud	- Application and Web Servers will be hosted in EC2,
+ASG -	EC2 Auto Scaling Group	- Dynamic Horizontal scale up and down of EC2 instances based on the  
+   parameters (min, max and desired capacities) or CPU / MEM 
+   Utilization,
+ALB	- Application Load Balancer	- Resource which route the requests to EC2 target groups as per the 
+  configured listener rules,
+NLB	- Network Load Balancer	- Using for SFTP file transfer ( Interface system to eBBS )
+- Using for mTLS ( EDMI -> NLB -> EC2 Web Server -> ALB -> EC2     
+   App   Server),
+EFS -	Elastic File System	- Scalable Network File system which used to store Downloads , 
+   uploads, RPO logs ,heap dump and reports,
+S3-	Simple Storage Service	- Service which provides object storage through a web service 
+   interface. It can be accessed with AWS SDK via in-house tool
+- Upload files are transferred and received via S3  ( IMFT 2.0 ), 
+SSM -	Simple Systems Manager	- Using to store application passwords and private keys
+- GIS team will key-in the passwords into SSM
+- While creating EC2 instances, we will read password from SSM and 
+   store the encrypted passwords in application server,
+IAM	- Identity & Access Management	- Users, groups and roles will be created in IAM to access AWS console,
+SCT	- Schema Conversion Tool	- DB2 to Aurora PostgreSQL Database Structure(DDL) Migration,
+DMS -	Database Migration Service	- DB2 to Aurora PostgreSQL Data Migration,
+EBS -	Elastic Block Storage	- Block level storage volumes for EC2,
+CloudWatch	 CloudWatch	- System monitoring like CPU, Memory usage
+- collect and access all resource’s performance and operational data in 
+   form of logs and metrics
+.
+
+References:
+https://docs.aws.amazon.com/  
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+             Are there any changes on Audit Data replication ?
+
+	Currently eBBS Audit Replication use IBM CDC tool for data capture and to populate data into Audit DB
+	When we move to the AWS, a new Open source tool called Debezium will be used for Audit replication
+
+
+             What is Debezium?
+
+	Debezium is an open source distributed platform for change data capture. It uses connector listen to replication slot in the source (eBBS) Database
+
+
+How it is integrated with eBBS ?
+
+	Debezium is integrated and deployed along with the eBBS Application package as a Spring Boot Application with Postgres Connector
+	Debezium application will be bundled along with EOD application
+	It can be also deployed Independently in Microservices Stack 
+
+
+What is a Postgres connector ?
+
+	Debezium PostgreSQL connector acts as a PostgreSQL client. When the connector receives changes it transforms the events into Debezium DML events that include the LSN of 
+the event
+	LSN refers to Log Sequence Number - which is Postgres inbuild technology for capturing modified data
+
+
+             Can we Stop/Start the connector to Database ?
+
+	Yes, Rest based API are developed to stop/Start the connector. It can be executed manually or
+through the Service
+
+
+            How do I configure tables for replication ?
+
+	It is configurable in Business Process Parameter (BPP) - “TABLE_WHITELIST”
+
+
+            What are the features used in eBBS ?
+
+	Debezium is used to capture both pre & post images of all DML changes to Databases. Data will be populated to Audit Postgres Database through Spring Boot Application
+
+
+           What are the benefits ?
+
+	IBM CDC tool license & CDC Server cost will be eliminated
+	No need of subscription & mirroring for each tables manually for data replication
+	No need for CDC subscription enable/disable scripts
+	Analysis in progress to adopt DB2 database
+
+
+           Are there change to Strategy on Audit Database ?
+
+	Going Forward, Audit tables will be created in eBBS Database with separate schema
+
+https://debezium.io/documentation/reference/1.2/connectors/postgresql.html
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+What is SSM Parameter Store ?
+	AWS Systems Manager Parameter Store provides secure, hierarchical storage for     configuration data management and secrets management.
+
+What is stored in SSM Parameter?
+	You can store data such as passwords, private key’s, database strings, Amazon Machine Image (AMI) IDs, and license codes as parameter values
+
+How password will be entered ?
+	Password are keyed-in via AWS CLI commands by AWS production deployment userid (PSS) , PSS team to initiate the CLI commands  & PIM team to key in the passwords in a hidden 
+text 
+
+What is AWS CLI ?
+	The AWS Command Line Interface (CLI) is a tool to manage and can control multiple AWS services from the command line and automate them through scripts
+
+Will the password be recycled ?
+	No its Store Area & password will not be refreshed in a cyclic period
+
+How to read password’s/private key’s from SSM ?
+	By executing AWS CLI commands from EC2 instances and encrypted passwords will be stored in instances
+
+Who can read data from SSM ?
+	Only from AWS EC2 instances
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+What are the interface integration mechanism which are supported when eBBS is moving to AWS cloud?
+
+	Message oriented powered by Solace & MQ
+	EDMI, powered by Web Methods
+	API Gateway powered by Kong 
+	Managed File Transfers ( IMFT 2.0) 
+	SFTP
+	Direct Application Connection  - By Opal & ATM Channel
+
+What are the security principles for each integration mechanism which interact with the application?
+
+	Solace & MQ -  Authentication using Certificates TLS 1.2 SHA 2
+	EDMI - Mutual authentication using Certificates ( including Client certificates ) ,TLS 1.2 SHA 2
+	API - API Token to authorize consumer application, TLS 1.2 SHA 2 , OAUTH - authorize consumer 
+	IMFT 2.0 & SFTP - Encryption enabled at EFS
+	https Connections - authentication using Certificates , TLS 1.2 SHA 2
+
+Are there any interfacing mechanism directly to the database?
+
+	Yes. CDC Replication ( EDMP )  , UDR  & Control M
+
+How is the tunnel protected in such integrations?
+
+	CDC Replication ( EDMP ) - Enabling TLS between  MC/AS & Engines
+	User Defined Reports - Enabling TLS between SAP Business Objects & eBBS Aurora database replica via Direct connect.
+	Control M - TLS 1.2 SHA 2
+
+Are http connection requests will still be allowed in AWS?
+
+	No, only https is allowed
+
+Does this have any impact to user login in to eBBS?
+
+	Yes, all users desktop using eBBS application hosted in AWS will be mandated to have upgraded the JRE to 1.8 and TLS 1.2 will be used.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+What is the file transfer mechanism to the interfaces when eBBS is moving to Cloud ?
+
+•	eBBS will adopt to the IMFT 2.0 solution when moving into the AWS infra.
+
+What is IMFT 2.0 ?
+
+•	eBBS is AGNOSTIC of underlying file transfer technology at the interface end. eBBS is fully migrated to IMFT.
+
+Is there any other components that are introduced / removed in IMFT 2.0 framework ?
+
+•	Yes, as part of IMFT 2.0 - there are no file agents required to be installed at eBBS end.
+•	Also, the file transfer is initiated based on a notification pushed to SOLACE.
+
+Is there any difference in the architecture between IMFT 2.0 in on Perm and Cloud ? 
+
+•	Yes, in on perm hosted countries, NFS of eBBS is mounted with the IMFT servers and based on the solace messaged, the IMFT server will pick the file from our server.
+•	Where as in cloud hosted countries, eBBS along with pushing the message to solace, it will push the file to a S3 bucket hosted in the Integration services VPC
+
+How is the file transfer status acknowledged back to eBBS ? 
+•	eBBS would listen to another solace topic in which the status of the file transfer is notified
+
+How about incoming files ?
+•	In on perm hosted countries, since the NFS of eBBS is mounted to the IMFT server, the file is directly placed to our server
+•	For cloud hosted countries, the file is copied to a S3 bucket and a notification is sent in solace, based on which eBBS will pull the file and place in the uploads path
+
+How is the tunnel between eBBS application and the S3 bucket protected ?
+•	The certificates of the S3 proxy end point is added to our JVM trust store.
+•	The CIDR range of the EC2 instances in the core banking VPC is added in the whitelisting of the S3 end point proxy in integration services VPC
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+What is the OS version used?
+
+•	Red Hat Enterprise Linux release 8.2
+
+What is the JBOSS version used?
+
+•	JBOSS EAP 7.2.8
+
+What is the JAVA version used?
+
+•	OpenJDK version "1.8.0_262"
+
+How to do configuration changes in JBOSS?
+
+•	No more admin console, all server configuration will be done with JBOSS CLI (Command Line Interface). One single XML file will have entire 
+server Configuration – /$JbossHome$/jboss-eap-7.2/standalone/configuration/SCBstandalone-full-ha.xml
+
+How to install application in JBOSS?
+
+•	Download application ear/jar/war from artifactory
+•	Execute resource reference script for JBOSS. JBOSS specific addition property added to resource reference tag of ejb-jar.xml / web.xml 
+(i.e.) <lookup-name>java:/jdbc/eBBS/XX_eBBS</lookup-name>
+•	Copy ear/jar/war to deployment path - /$JbossHome$/jboss-eap-7.2/standalone/deployments
+•	Restart application
+•	All the above steps are automated and will be executed while creating EC2 Instance.
+
+How to deploy shared/third party jar file?
+
+•	All shared and third-party jar’s will be copied inside ear lib while running resource reference script.
+
+How to configure PostgreSQL database driver?
+
+•	Driver jar files will be downloaded from artifact and copied to JBOSS module path
+/$JbossHome$/jboss-eap-7.2/modules
+
+How to exclude/include JBOSS custom third party modules like log4j?
+
+•	Module names will be added in jboss-deployment-structure.xml
+•	Jboss-deployment-structure.xml file will be copied inside ear META-INF while running resource reference script.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Where to check logs in JBOSS?
+	Log writers(Application logs) same as WebSphere server
+	Both SystemOut and SystemErr logs will write in server.log
+/jboss/support/logs/<INSTANCENAME>/server.log
+	GC logs will write in instance logs path
+/jboss/support/logs/<INSTANCENAME>/gc.log
+	All logs can be checked in ELK
+
+How to analyse GC logs?
+	40259.201: [GC (Allocation Failure) [PSYoungGen: 1392336K->1584K(1394688K)] 3169249K->1778529K(4191232K), 0.0121263 secs] [Times: user=0.03 sys=0.00, real=0.01 secs]
+
+1394688K – Total memory allocated for YougnGen(Newly created Objects)
+1392336K – GC performed
+1584K – In Use
+
+4191232K – Total memory allocated for JVM
+3169249K – GC performed
+1778529K – In Use
+
+Where heap dump files will be generated and how to download?
+	Heap dump file will be generated in EFS path /apps/dumps/<INSTANCENAME>/ 
+	Dump files can be download by using in-house AWS utility to on-premise server
+
+How to generate thread dump at run time?
+	Thread dumps can be generated by using in-house AWS utility from on-premise server
+	jstack -l <PROCESSID> command will be used to generate thread dump
+	dump will be generated 6 times with 20 seconds interval between each dump
+
+            How to enable logging for JBOSS modules?
+	Execute JBOSS CLI to enable logging for any JBOSS module
+Command: /subsystem=logging/logger=org.jboss.jca:add(level=INFO,handlers=[FILE])
+<logger category="org.jboss.jca">
+       <level name="INFO"/>
+</logger>
+
+            How to change logging level?
+	Execute JBOSS CLI to modify logging level
+Command: /subsystem=logging/logger=org.jboss.jca:write-attribute(name=level,value=TRACE)
+<logger category="org.jboss.jca">
+       <level name="TRACE"/>
+</logger>
+
+            Is it possible to change logging level at run time?
+	Yes, JBOSS CLI commands can execute at run time, no application JVM restart required to effect logging changes
+	In WebSphere run time logging level changes will be rollbacked after JVM restart, where as in JBOSS changes will not be rollbacked
+
+How to execute CLI commands in EC2 instance without SSH access?
+	By using in-house AWS utility from on-premise server.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1) What is the ELK Stack?
+The ELK Stack is a collection of three open-source products — Elasticsearch, Logstash, and Kibana.
+
+E stands for Elasticsearch: used for storing logs
+L stands for Logstash : used for both shipping as well as processing and storing logs
+K stands for Kibana: is a visualization tool (a web interface).
+
+2) How is the logs pushed from the ec2-intances ?
+A beats agent called FileBeat is installed in all the ec2-instances. It is a lightweight log shipper. FileBeat will listen to the log paths configured and push the logs to 
+Logstash whenever there is a change in the file.
+
+3) What is the high level flow of the ELK stack? 
+
+ log -> beats(data collection) -> logstash(data processing) -> elastic search(storage) -> kibana(Visualize).
+
+4) How does FileBeat know the paths to listen ?
+There is a YML file available where we have configured the paths to listen. Below are the paths configured.
+
+/apps/support/logs/httpd/access_log*
+/apps/support/logs/httpd/error_log*
+/apps/*SEC/logs/SEC/?/*.log*
+/apps/??/logs/*/*/*.log*
+/jboss/support/logs/eap/*/*.log*
+
+5) I have few logs written in the path which is not mentioned above, What should i do ?
+Please email to to get it added asap.
+
+6) How many days logs will be available in ELK ?
+Current day and n-1 day logs will be available in ELK. The previous days logs are moved to S3 and using the in house tool - we can download the previous days logs.
+
+7) How is resilience achieved in ELK  ?
+We have a 3 node cluster for the ELK and there is replication available.
+
+8) How do i monitor the health check of ELK ?
+It can be monitored in Kibana - using the Stack Monitoring menu.
+
+9) Apart from log analysis, what other feature are available in ELK ?
+Like file beat that pushes logs, there is another beats agent called MetricBeat installed in the ec2 instances which will push the system metrics like CPU usage, disk space 
+available etc
+Custom dashboards are available in ELK to monitor the performance and application health check
+
+10) Do we have ITRS available in Cloud to trigger alerts for the constrained scenarios ?
+No, though ITRS is available in Cloud, we will proceed to use ELK watcher module to trigger alerts whenever there are some specific error patterns are written in the log.
+
+11) I have few patterns to be configured for triggering alerts, whom should i contact ? 
+Please email to  to get it added asap.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
