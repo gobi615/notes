@@ -23,7 +23,7 @@ There is a YML file available where we have configured the paths to listen. Belo
 /jboss/support/logs/eap/*/*.log*
 
 5) I have few logs written in the path which is not mentioned above, What should i do ?
-Please email to Crbkg_AWS_Env@exchange.standardchartered.com to get it added asap.
+Please email to to get it added asap.
 
 6) How many days logs will be available in ELK ?
 Current day and n-1 day logs will be available in ELK. The previous days logs are moved to S3 and using the in house tool - we can download the previous days logs.
@@ -42,4 +42,4 @@ Custom dashboards are available in ELK to monitor the performance and applicatio
 No, though ITRS is available in Cloud, we will proceed to use ELK watcher module to trigger alerts whenever there are some specific error patterns are written in the log.
 
 11) I have few patterns to be configured for triggering alerts, whom should i contact ? 
-Please email to Crbkg_AWS_Env@exchange.standardchartered.com to get it added asap.
+Please email to  to get it added asap.
