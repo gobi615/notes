@@ -6,11 +6,12 @@ L stands for Logstash : used for both shipping as well as processing and storing
 K stands for Kibana: is a visualization tool (a web interface).
 
 2) How is the logs pushed from the ec2-intances ?
-A beats agent called FileBeat is installed in all the ec2-instances. It is a lightweight log shipper. FileBeat will listen to the log paths configured and push the logs to Logstash whenever there is a change in the file.
+A beats agent called FileBeat is installed in all the ec2-instances. It is a lightweight log shipper. FileBeat will listen to the log paths configured and push the logs to 
+Logstash whenever there is a change in the file.
 
 3) What is the high level flow of the ELK stack? 
 
- 
+ log -> beats(data collection) -> logstash(data processing) -> elastic search(storage) -> kibana(Visualize).
 
 4) How does FileBeat know the paths to listen ?
 There is a YML file available where we have configured the paths to listen. Below are the paths configured.
